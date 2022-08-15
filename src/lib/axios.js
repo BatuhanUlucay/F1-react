@@ -6,6 +6,8 @@ function requestInterceptor(config) {
   return config;
 }
 
+console.log("URLLL", API_URL);
+
 export const axios = Axios.create({
   baseURL: API_URL,
 });
