@@ -1,8 +1,12 @@
 import React from 'react'
+import PersistentDrawerLeft from './Navbar'
 
 function Landing() {
   return (
-    <div>Landing</div>
+    <div>
+        <PersistentDrawerLeft/>
+
+    </div>
   )
 }
 
