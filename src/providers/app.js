@@ -1,7 +1,20 @@
 import React from 'react';
 import { QueryClientProvider } from 'react-query';
-import queryClient from "../lib/react-query"
+import queryClient from '../lib/react-query';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+
+const theme = createTheme({
+  palette: {
+    type: 'light',
+    primary: {
+      main: '#E10700',
+    },
+    secondary: {
+      main: '#FFFFFF',
+    },
+  },
+});
 
 function AppProvider({ children }) {
   return (
@@ -13,9 +26,11 @@ function AppProvider({ children }) {
         </div>
       }
     >
-      <QueryClientProvider client={queryClient}>
-        <Router>{children}</Router>
-      </QueryClientProvider>
+      <ThemeProvider theme={theme}>
+        <QueryClientProvider client={queryClient}>
+          <Router>{children}</Router>
+        </QueryClientProvider>
+      </ThemeProvider>
     </React.Suspense>
   );
 }

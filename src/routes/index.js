@@ -1,5 +1,4 @@
 import { useRoutes } from 'react-router-dom';
-
 import Landing from '../components/Layout/Landing';
 
 const AppRoutes = () => {
