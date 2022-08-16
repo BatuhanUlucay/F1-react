@@ -12,13 +12,14 @@ import DateCard from '../../../components/Date/DateCard';
 import { groupBy } from 'lodash';
 
 import { testData } from './testData';
+import SeasonFilter from '../../../components/Select/SeasonFilter';
 
 const RaceRow = ({ race }) => {
   const [open, setOpen] = useState(false);
 
-    const sessions = race[1].sort((a,b) => {
-        return new Date(a.date) - new Date(b.date);
-    });
+  const sessions = race[1].sort((a, b) => {
+    return new Date(a.date) - new Date(b.date);
+  });
 
   const sessionsRows = sessions.map((session) => {
     return (
@@ -32,7 +33,7 @@ const RaceRow = ({ race }) => {
 
   return (
     <>
-      <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
+      <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
         <TableCell>
           <IconButton size="small" onClick={() => setOpen(!open)}>
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
@@ -41,16 +42,16 @@ const RaceRow = ({ race }) => {
         <TableCell>
           <div className="flex my-auto">
             {/* <img /> flag here*/}
-            <div className=''>
+            <div className="">
               <Typography>{race[1][0].competition.name}</Typography>
-              <Typography className='text-xs'>{race[1][0].circuit.name}</Typography>
+              <Typography className="text-xs">{race[1][0].circuit.name}</Typography>
             </div>
           </div>
         </TableCell>
-        <TableCell>{<DateCard date={new Date(race[1][0].date)}/>}</TableCell>
+        <TableCell>{<DateCard date={new Date(race[1][0].date)} />}</TableCell>
       </TableRow>
       <TableRow>
-        <TableCell className='pb-0 pt-0' colSpan={6}>
+        <TableCell className="pb-0 pt-0" colSpan={6}>
           <CollapsibleTable rows={sessionsRows} open={open}></CollapsibleTable>
         </TableCell>
       </TableRow>
@@ -78,6 +79,11 @@ export const Races = () => {
       </>
     );
 
-    return <GenericTable rows={raceRows} columns={columns}></GenericTable>;
+    return (
+      <>
+        <SeasonFilter />
+        <GenericTable rows={raceRows} columns={columns}></GenericTable>;
+      </>
+    );
   }
 };

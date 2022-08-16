@@ -4,6 +4,7 @@ import queryClient from '../lib/react-query';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { StyledEngineProvider } from '@mui/material/styles';
+import { FilterProvider } from '../context/SeasonContext';
 
 const theme = createTheme({
   palette: {
@@ -30,7 +31,9 @@ function AppProvider({ children }) {
       <ThemeProvider theme={theme}>
         <QueryClientProvider client={queryClient}>
           <StyledEngineProvider injectFirst>
-            <Router>{children}</Router>
+            <FilterProvider>
+              <Router>{children}</Router>
+            </FilterProvider>
           </StyledEngineProvider>
         </QueryClientProvider>
       </ThemeProvider>
