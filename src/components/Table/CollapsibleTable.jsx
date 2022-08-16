@@ -12,17 +12,14 @@ function CollapsibleTable({ rows, columns, open }) {
     <Collapse in={open} timeout="auto" unmountOnExit>
       <Box>
         <Table>
-          <TableHead>
-            <TableRow>
-              {columns.map((column) => {
-                return(<TableCell key={column}></TableCell>);
-              })}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows.map((row) => {
-              return(<TableRow key={row.date.toString()}>A</TableRow>);
+          <TableHead></TableHead>
+          {/* <TableRow>
+            {columns.map((column) => {
+              return <TableCell key={column}></TableCell>;
             })}
+          </TableRow> */}
+          <TableBody>
+            {rows}
           </TableBody>
         </Table>
       </Box>

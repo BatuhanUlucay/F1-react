@@ -8,15 +8,24 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { Typography } from '@mui/material';
 import CollapsibleTable from '../../../components/Table/CollapsibleTable';
-
 import { groupBy } from 'lodash';
-
-// import { groupBy } from '../../../utils/groupBy';
 
 import { testData } from './testData';
 
 const RaceRow = ({ race }) => {
   const [open, setOpen] = useState(false);
+
+  const sessionsRows = race[1].map((session) => {
+    return (<TableRow>
+        <TableCell>
+            {session.type}
+        </TableCell>
+        <TableCell>
+            {session.date}
+        </TableCell>
+        
+    </TableRow>);
+  });
 
   return (
     <>
@@ -40,7 +49,7 @@ const RaceRow = ({ race }) => {
       <TableRow>
         <TableCell>
           <CollapsibleTable
-            rows={[race[1][1], race[1][2], race[1][3], race[1][4]]}
+            rows={sessionsRows}
             columns={[1, 2, 3, 4]}
             open={open}
           ></CollapsibleTable>
@@ -59,11 +68,9 @@ export const Races = () => {
     });
 
     let rows = Object.entries(groupedSessions);
-    let columns = ["", "Grand Prix", "Date"];
+    let columns = ['', 'Grand Prix', 'Date'];
 
-    // console.log(rows);
-
-    let raceRows2 = (
+    let raceRows = (
       <>
         {rows.map((race) => {
           console.log(race);
@@ -72,11 +79,6 @@ export const Races = () => {
       </>
     );
 
-    let raceRows = rows.map((race) => {
-      console.log(race);
-      return <RaceRow race={race}></RaceRow>;
-    });
-
-    return <GenericTable rows={raceRows2} columns={columns}></GenericTable>;
+    return <GenericTable rows={raceRows} columns={columns}></GenericTable>;
   }
 };
