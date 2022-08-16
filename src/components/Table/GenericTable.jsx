@@ -9,12 +9,13 @@ import React from 'react';
 
 function GenericTable({ rows, columns }) {
   return (
-    <TableContainer>
-      <Table>
+    <TableContainer className='w-full'>
+      <Table className='max-w-3xl m-auto'>
         <TableHead>
           <TableRow>
+            <TableCell />
             {columns.map((column) => {
-              return <TableCell>{column}</TableCell>;
+              return <TableCell align='left'>{column}</TableCell>;
             })}
           </TableRow>
         </TableHead>

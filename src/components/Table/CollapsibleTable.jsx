@@ -7,18 +7,14 @@ import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 
-function CollapsibleTable({ rows, columns, open }) {
+function CollapsibleTable({ rows, open }) {
   return (
     <Collapse in={open} timeout="auto" unmountOnExit>
-      <Box>
-        <Table>
+      <Box className='m-1'>
+        <Table size='medium'>
           <TableHead></TableHead>
-          {/* <TableRow>
-            {columns.map((column) => {
-              return <TableCell key={column}></TableCell>;
-            })}
-          </TableRow> */}
           <TableBody>
+            <TableCell />
             {rows}
           </TableBody>
         </Table>
