@@ -21,7 +21,7 @@ export const getRaces = (season, competition) => {
 
 export const useRaces = (season, competition) => {
   return useQuery({
-    queryKey: ['races'],
+    queryKey: ['races', season],
     queryFn: () => getRaces(season, competition),
     // ...config,
   });

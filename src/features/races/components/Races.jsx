@@ -26,7 +26,16 @@ const RaceRow = ({ race }) => {
       <TableRow>
         <TableCell></TableCell>
         <TableCell>{session.type}</TableCell>
-        <TableCell>{session.date}</TableCell>
+        <TableCell>
+          {new Date(session.date).toLocaleString('default', {
+            day: 'numeric',
+            month: 'long',
+            weekday: 'long',
+          })}
+        </TableCell>
+        <TableCell>
+          {new Date(session.date).toLocaleTimeString('tr', { hour: '2-digit', minute: '2-digit' })}
+        </TableCell>
       </TableRow>
     );
   });
