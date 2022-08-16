@@ -8,6 +8,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { Typography } from '@mui/material';
 import CollapsibleTable from '../../../components/Table/CollapsibleTable';
+import DateCard from '../../../components/Date/DateCard';
 import { groupBy } from 'lodash';
 
 import { testData } from './testData';
@@ -15,7 +16,11 @@ import { testData } from './testData';
 const RaceRow = ({ race }) => {
   const [open, setOpen] = useState(false);
 
-  const sessionsRows = race[1].map((session) => {
+    const sessions = race[1].sort((a,b) => {
+        return new Date(a.date) - new Date(b.date);
+    });
+
+  const sessionsRows = sessions.map((session) => {
     return (
       <TableRow>
         <TableCell></TableCell>
@@ -42,7 +47,7 @@ const RaceRow = ({ race }) => {
             </div>
           </div>
         </TableCell>
-        <TableCell>{race[1][0].date.toString()}</TableCell>
+        <TableCell>{<DateCard date={new Date(race[1][0].date)}/>}</TableCell>
       </TableRow>
       <TableRow>
         <TableCell className='pb-0 pt-0' colSpan={6}>
