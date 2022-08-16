@@ -13,7 +13,6 @@ import { groupBy } from 'lodash';
 
 import { testData } from './testData';
 import SeasonFilter from '../../../components/Select/SeasonFilter';
-import PersistentDrawerLeft from '../../../components/Layout/Navbar'
 
 
 const RaceRow = ({ race }) => {
@@ -92,7 +91,6 @@ export const Races = () => {
 
     return (
       <>
-        <PersistentDrawerLeft/>
         <SeasonFilter />
         <GenericTable rows={raceRows} columns={columns}></GenericTable>;
       </>
