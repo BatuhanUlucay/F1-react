@@ -14,16 +14,12 @@ function GenericTable({ rows, columns }) {
         <TableHead>
           <TableRow>
             {columns.map((column) => {
-              <TableCell>{column}</TableCell>;
+              return <TableCell>{column}</TableCell>;
             })}
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => {
-            <TableRow>
-              <TableCell>{row}</TableCell>
-            </TableRow>;
-          })}
+          {rows}
         </TableBody>
       </Table>
     </TableContainer>

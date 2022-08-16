@@ -7,21 +7,21 @@ import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 
-function CollapsibleTable({ rows, columns }) {
+function CollapsibleTable({ rows, columns, open }) {
   return (
-    <Collapse>
+    <Collapse in={open} timeout="auto" unmountOnExit>
       <Box>
         <Table>
           <TableHead>
             <TableRow>
               {columns.map((column) => {
-                <TableCell>{column}</TableCell>;
+                return(<TableCell key={column}></TableCell>);
               })}
             </TableRow>
           </TableHead>
           <TableBody>
             {rows.map((row) => {
-              <TableRow>{row}</TableRow>;
+              return(<TableRow key={row.date.toString()}>A</TableRow>);
             })}
           </TableBody>
         </Table>
