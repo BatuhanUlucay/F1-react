@@ -1,17 +1,16 @@
 import React, { useContext } from 'react';
 import SeasonContext from '../../../context/SeasonContext';
 import GenericTable from '../../../components/Table/GenericTable';
-
-import { testData } from './teamsTestData';
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
+import { useTeamRankings } from '../api/getTeamRankings';
 
 const ConstructorRow = ({ constructor }) => {
   return (
     <TableRow>
       <TableCell />
       <TableCell>{constructor.position}</TableCell>
-      <TableCell>{constructor.team.name}</TableCell>
+      <TableCell>{constructor.Constructor.name}</TableCell>
       <TableCell>{constructor.points}</TableCell>
     </TableRow>
   );
@@ -20,20 +19,26 @@ const ConstructorRow = ({ constructor }) => {
 function ConstructorStandings() {
   const { year } = useContext(SeasonContext);
 
+  const teamRankingsQuery = useTeamRankings(2022);
+
   const columns = ['Position', 'Constructor', 'Points'];
 
-  const result = testData.response;
+  if (teamRankingsQuery.isSuccess) {
+    const result =
+      teamRankingsQuery.data.data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings;
 
-  let constructorRows = (
-    <>
-      {result.map((team) => {
-        console.log(team);
-        return <ConstructorRow constructor={team}></ConstructorRow>;
-      })}
-    </>
-  );
+    console.log(result);
 
-  return <GenericTable rows={constructorRows} columns={columns} />;
+    let constructorRows = (
+      <>
+        {result.map((team) => {
+          console.log(team);
+          return <ConstructorRow constructor={team}></ConstructorRow>;
+        })}
+      </>
+    );
+    return <GenericTable rows={constructorRows} columns={columns} />;
+  }
 }
 
 export default ConstructorStandings;

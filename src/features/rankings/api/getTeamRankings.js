@@ -1,24 +1,14 @@
 import { useQuery } from 'react-query';
-import { axios } from '../../../lib/axios';
+import { ergastAxios } from '../../../lib/axios';
 
-export const getTeamRankings = (season, team) => {
-  let params = {};
-  if (season !== undefined) {
-    params.season = season;
-  }
-  if (team !== undefined) {
-    params.competition = team;
-  }
-
-  return axios.get(`rankings/teams`, {
-    params: params,
-  });
+export const getTeamRankings = (season) => {
+  return ergastAxios.get(`${season}/constructorStandings.json`);
 };
 
-export const useTeamRankings = (season, team) => {
+export const useTeamRankings = (season) => {
   return useQuery({
     queryKey: ['teamRankings', season],
-    queryFn: () => getTeamRankings(season, team),
+    queryFn: () => getTeamRankings(season),
     // ...config,
   });
 };

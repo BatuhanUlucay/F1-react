@@ -6,7 +6,7 @@ export const convertDate = (dateString) => {
   
   export const convertTimeZone = (timeString) => {
   
-      if(timeString == undefined){
+      if(timeString === undefined){
           return ["", ""]
       }
   
