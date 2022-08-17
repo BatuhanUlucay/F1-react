@@ -10,32 +10,81 @@ import { Typography } from '@mui/material';
 import CollapsibleTable from '../../../components/Table/CollapsibleTable';
 import DateCard from '../../../components/Date/DateCard';
 import { groupBy } from 'lodash';
+import { convertDate, convertTimeZone } from '../../../util/DateConverter';
 
 import { testData } from './testData';
 import SeasonFilter from '../../../components/Select/SeasonFilter';
 
-
 const RaceRow = ({ race }) => {
   const [open, setOpen] = useState(false);
 
-  const sessions = race[1].sort((a, b) => {
-    return new Date(a.date) - new Date(b.date);
+  let sessions = [];
+
+  if (race.FirstPractice !== undefined) {
+    sessions.push({
+      name: 'First Practice',
+      date: race.FirstPractice.date,
+      time: race.FirstPractice.time,
+    });
+  }
+  if (race.SecondPractice !== undefined) {
+    sessions.push({
+      name: 'Second Practice',
+      date: race.SecondPractice.date,
+      time: race.SecondPractice.time,
+    });
+  }
+  if (race.ThirdPractice !== undefined) {
+    sessions.push({
+      name: 'Third Practice',
+      date: race.ThirdPractice.date,
+      time: race.ThirdPractice.time,
+    });
+  }
+  if (race.Qualifying !== undefined) {
+    sessions.push({
+      name: 'Qualifying',
+      date: race.Qualifying.date,
+      time: race.Qualifying.time,
+    });
+  }
+  if (race.Sprint !== undefined) {
+    sessions.push({
+      name: 'Sprint',
+      date: race.Sprint.date,
+      time: race.Sprint.time,
+    });
+  }
+  if (race !== undefined) {
+    sessions.push({
+      name: 'Race',
+      date: race.date,
+      time: race.time,
+    });
+  }
+
+  sessions.sort((a, b) => {
+    const first = a.date + a.time;
+    const second = b.date + b.time;
+
+    return first.localeCompare(second);
   });
 
   const sessionsRows = sessions.map((session) => {
     return (
       <TableRow>
         <TableCell></TableCell>
-        <TableCell>{session.type}</TableCell>
+        <TableCell>{session.name}</TableCell>
         <TableCell>
-          {new Date(session.date).toLocaleString('default', {
+          {convertDate(session.date).toLocaleString('default', {
             day: 'numeric',
             month: 'long',
             weekday: 'long',
           })}
         </TableCell>
+
         <TableCell>
-          {new Date(session.date).toLocaleTimeString('tr', { hour: '2-digit', minute: '2-digit' })}
+          {convertTimeZone(session.time)[0] + '.' + convertTimeZone(session.time)[1]}
         </TableCell>
       </TableRow>
     );
@@ -53,12 +102,12 @@ const RaceRow = ({ race }) => {
           <div className="flex my-auto">
             {/* <img /> flag here*/}
             <div className="">
-              <Typography>{race[1][0].competition.name}</Typography>
-              <Typography className="text-xs">{race[1][0].circuit.name}</Typography>
+              <Typography>{race.raceName}</Typography>
+              <Typography className="text-xs">{race.Circuit.circuitName}</Typography>
             </div>
           </div>
         </TableCell>
-        <TableCell>{<DateCard date={new Date(race[1][0].date)} />}</TableCell>
+        <TableCell>{<DateCard date={new Date(race.date)} />}</TableCell>
       </TableRow>
       <TableRow>
         <TableCell className="pb-0 pt-0" colSpan={6}>
@@ -70,16 +119,12 @@ const RaceRow = ({ race }) => {
 };
 
 export const Races = () => {
-  //const racesQuery = useRaces('2022', '11');
+  const racesQuery = useRaces('2022');
 
-  if (true) {
-    const groupedSessions = groupBy(testData, (data) => {
-      return data.competition.id;
-    });
+  if (racesQuery.isSuccess) {
+    const rows = racesQuery.data.data.MRData.RaceTable.Races;
 
-    let rows = Object.entries(groupedSessions);
     let columns = ['Grand Prix', 'Date'];
-
     let raceRows = (
       <>
         {rows.map((race) => {

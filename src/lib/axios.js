@@ -6,11 +6,13 @@ function requestInterceptor(config) {
   return config;
 }
 
-console.log('keyy', API_KEY);
-
 export const axios = Axios.create({
   baseURL: API_URL,
   headers: { 'x-rapidapi-key': API_KEY, 'x-rapidapi-host': API_HOST },
+});
+
+export const ergastAxios = Axios.create({
+  baseURL: "http://ergast.com/api/f1",
 });
 
 axios.interceptors.request.use(requestInterceptor);

@@ -1,26 +1,15 @@
 import { useQuery } from 'react-query';
+import { ergastAxios } from '../../../lib/axios';
 
-import { axios } from '../../../lib/axios';
+export const getRaces = (season) => {
 
-export const getRaces = (season, competition) => {
-
-    let params = {}
-    if(season !== undefined){
-        params.season = season;
-    }
-    if(competition !== undefined){
-        params.competition = competition;
-    }
-
-  return axios.get(`races`, {
-    params: params,
-  });
+  return ergastAxios.get(`${season}.json`);
 };
 
-export const useRaces = (season, competition) => {
+export const useRaces = (season) => {
   return useQuery({
     queryKey: ['races', season],
-    queryFn: () => getRaces(season, competition),
+    queryFn: () => getRaces(season),
     // ...config,
   });
 };
