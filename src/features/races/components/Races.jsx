@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useRaces } from '../api/getRaces';
 import GenericTable from '../../../components/Table/GenericTable';
 import IconButton from '@mui/material/IconButton';
@@ -11,6 +11,7 @@ import CollapsibleTable from '../../../components/Table/CollapsibleTable';
 import DateCard from '../../../components/Date/DateCard';
 import { convertDate, convertTimeZone } from '../../../util/DateConverter';
 import SeasonFilter from '../../../components/Select/SeasonFilter';
+import SeasonContext from '../../../context/SeasonContext';
 
 const lookup = require('coordinate_to_country');
 
@@ -127,7 +128,9 @@ const RaceRow = ({ race }) => {
 };
 
 export const Races = () => {
-  const racesQuery = useRaces('2022');
+  const { year } = useContext(SeasonContext);
+
+  const racesQuery = useRaces(year);
 
   if (racesQuery.isSuccess) {
     const rows = racesQuery.data.data.MRData.RaceTable.Races;
