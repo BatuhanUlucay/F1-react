@@ -18,21 +18,16 @@ const ConstructorRow = ({ constructor }) => {
 
 function ConstructorStandings() {
   const { year } = useContext(SeasonContext);
-
-  const teamRankingsQuery = useTeamRankings(2022);
-
+  const teamRankingsQuery = useTeamRankings(year);
   const columns = ['Position', 'Constructor', 'Points'];
 
   if (teamRankingsQuery.isSuccess) {
     const result =
       teamRankingsQuery.data.data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings;
 
-    console.log(result);
-
     let constructorRows = (
       <>
         {result.map((team) => {
-          console.log(team);
           return <ConstructorRow constructor={team}></ConstructorRow>;
         })}
       </>

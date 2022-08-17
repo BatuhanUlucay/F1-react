@@ -136,7 +136,6 @@ export const Races = () => {
     let raceRows = (
       <>
         {rows.map((race) => {
-          console.log(race);
           return <RaceRow race={race}></RaceRow>;
         })}
       </>
