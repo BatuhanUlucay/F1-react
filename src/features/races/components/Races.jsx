@@ -15,6 +15,8 @@ import { convertDate, convertTimeZone } from '../../../util/DateConverter';
 import { testData } from './testData';
 import SeasonFilter from '../../../components/Select/SeasonFilter';
 
+const lookup = require("coordinate_to_country");
+
 const RaceRow = ({ race }) => {
   const [open, setOpen] = useState(false);
 
@@ -100,7 +102,17 @@ const RaceRow = ({ race }) => {
         </TableCell>
         <TableCell>
           <div className="flex my-auto">
-            {/* <img /> flag here*/}
+          <img
+                 style={{marginRight: "1rem" }}
+              src={`https://countryflagsapi.com/png/${lookup(
+                +race.Circuit.Location.lat,
+                +race.Circuit.Location.long,
+                true
+              )}`}
+              alt="Flag"
+              height={40}
+              width={60}
+            />
             <div className="">
               <Typography>{race.raceName}</Typography>
               <Typography className="text-xs">{race.Circuit.circuitName}</Typography>
