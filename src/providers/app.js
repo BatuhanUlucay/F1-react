@@ -5,6 +5,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { StyledEngineProvider } from '@mui/material/styles';
 import { FilterProvider } from '../context/SeasonContext';
+import { CurrentDriversProvider } from '../context/CurrentDriversContext';
 
 const theme = createTheme({
   palette: {
@@ -32,7 +33,9 @@ function AppProvider({ children }) {
         <QueryClientProvider client={queryClient}>
           <StyledEngineProvider injectFirst>
             <FilterProvider>
-              <Router>{children}</Router>
+              <CurrentDriversProvider>
+                <Router>{children}</Router>
+              </CurrentDriversProvider>
             </FilterProvider>
           </StyledEngineProvider>
         </QueryClientProvider>
