@@ -1,27 +1,14 @@
 import { useQuery } from 'react-query';
-import { axios } from '../../../lib/axios';
+import { ergastAxios } from '../../../lib/axios';
 
-export const getDriverRankings = (season, driver, team) => {
-  let params = {};
-  if (season !== undefined) {
-    params.season = season;
-  }
-  if (driver !== undefined) {
-    params.driver = driver;
-  }
-  if (team !== undefined) {
-    params.competition = team;
-  }
-
-  return axios.get(`rankings/drivers`, {
-    params: params,
-  });
+export const getDriverRankings = (season) => {
+  return ergastAxios.get(`${season}/driverStandings.json`);
 };
 
-export const useDriverRankings = (season, driver, team) => {
+export const useDriverRankings = (season) => {
   return useQuery({
     queryKey: ['driverRankings', season],
-    queryFn: () => getDriverRankings(season, driver, team),
+    queryFn: () => getDriverRankings(season),
     // ...config,
   });
 };

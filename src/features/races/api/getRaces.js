@@ -2,7 +2,6 @@ import { useQuery } from 'react-query';
 import { ergastAxios } from '../../../lib/axios';
 
 export const getRaces = (season) => {
-
   return ergastAxios.get(`${season}.json`);
 };
 

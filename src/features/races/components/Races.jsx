@@ -9,13 +9,10 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { Typography } from '@mui/material';
 import CollapsibleTable from '../../../components/Table/CollapsibleTable';
 import DateCard from '../../../components/Date/DateCard';
-import { groupBy } from 'lodash';
 import { convertDate, convertTimeZone } from '../../../util/DateConverter';
-
-import { testData } from './testData';
 import SeasonFilter from '../../../components/Select/SeasonFilter';
 
-const lookup = require("coordinate_to_country");
+const lookup = require('coordinate_to_country');
 
 const RaceRow = ({ race }) => {
   const [open, setOpen] = useState(false);
@@ -84,7 +81,6 @@ const RaceRow = ({ race }) => {
             weekday: 'long',
           })}
         </TableCell>
-
         <TableCell>
           {convertTimeZone(session.time)[0] + '.' + convertTimeZone(session.time)[1]}
         </TableCell>
@@ -102,8 +98,8 @@ const RaceRow = ({ race }) => {
         </TableCell>
         <TableCell>
           <div className="flex my-auto">
-          <img
-                 style={{marginRight: "1rem" }}
+            <img
+              className="m-4"
               src={`https://countryflagsapi.com/png/${lookup(
                 +race.Circuit.Location.lat,
                 +race.Circuit.Location.long,
@@ -113,7 +109,7 @@ const RaceRow = ({ race }) => {
               height={40}
               width={60}
             />
-            <div className="">
+            <div>
               <Typography>{race.raceName}</Typography>
               <Typography className="text-xs">{race.Circuit.circuitName}</Typography>
             </div>

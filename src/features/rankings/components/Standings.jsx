@@ -15,14 +15,14 @@ function Standings() {
 
   return (
     <>
-    {/* <YearFilter /> */}
-    <Box sx={{ width: "100%", bgcolor: "background.paper" }}>
-      <Tabs value={value} onChange={handleChange} centered>
-        <Tab label="Drivers" />
-        <Tab label="Constructors" />
-      </Tabs>
-      {!value ? <DriverStandings /> : <ConstructorStandings />}
-    </Box>
+      <SeasonFilter />
+      <Box sx={{ width: '100%', bgcolor: 'background.paper' }}>
+        <Tabs value={value} onChange={handleChange} centered>
+          <Tab label="Drivers" />
+          <Tab label="Constructors" />
+        </Tabs>
+        {!value ? <DriverStandings /> : <ConstructorStandings />}
+      </Box>
     </>
   );
 }

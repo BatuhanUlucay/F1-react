@@ -6,12 +6,14 @@ import { testData } from './driverTestData';
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
 
+import { useDriverRankings } from '../api/getDriverRankings';
+
 const DriverRow = ({ driver }) => {
   return (
     <TableRow>
       <TableCell />
       <TableCell>{driver.position}</TableCell>
-      <TableCell>{driver.driver.name}</TableCell>
+      <TableCell>{driver.Driver.givenName + " " + driver.Driver.familyName}</TableCell>
       <TableCell>{driver.points}</TableCell>
     </TableRow>
   );
@@ -22,18 +24,24 @@ function DriverStandings() {
 
   const columns = ['Position', 'Driver', 'Points'];
 
-  const result = testData.response;
+  const driverRankingsQuery = useDriverRankings("2022");
 
-  let driverRows = (
-    <>
-      {result.map((driver) => {
-        console.log(driver);
-        return <DriverRow driver={driver}></DriverRow>;
-      })}
-    </>
-  );
+    const driverRankings = driverRankingsQuery.data.data.MRData.StandingsTable.StandingsLists[0].DriverStandings
 
-  return <GenericTable rows={driverRows} columns={columns} />;
+  if(driverRankingsQuery.isSuccess){
+
+      let driverRows = (
+          <>
+          {driverRankings.map((driver) => {
+            console.log(driver);
+              return <DriverRow driver={driver}></DriverRow>;
+        })}
+            </>
+      
+      
+      );  return <GenericTable rows={driverRows} columns={columns} />;
+}
+
 }
 
 export default DriverStandings;
