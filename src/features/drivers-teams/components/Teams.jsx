@@ -2,28 +2,21 @@ import React from 'react';
 import { useTeamRankings } from '../../rankings/api/getTeamRankings';
 import TeamCards from './TeamCards';
 import { testData } from '../../rankings/components/teamsTestData';
+import { useTeams } from '../api/getTeams';
 
 function Teams() {
-  //const teamsQuery = useTeamRankings(new Date().getFullYear());
+  //TODO: get the season info from context.
+  const teamsQuery = useTeamRankings(2022);
 
-  //   if (teamsQuery.isSuccess) {
+  if (teamsQuery.isSuccess) {
+    
+    const teams = teamsQuery.data.data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings
 
-  if (true) {
-    let teamIds = [];
-
-
-
-    const teams = testData.response;
-
-    for (let i = 0; i < teams.length; i++) {
-      teamIds.push(teams[i].team.id);
-    }
-
-    console.log(teamIds);
+    console.log(teams);
 
     return (
-      <div className=''>
-        <TeamCards ids={teamIds} />
+      <div>
+        <TeamCards teams={teams} />
       </div>
     );
   }
