@@ -1,13 +1,14 @@
-import React from 'react'
-import TeamCard from './TeamCard'
+import React from 'react';
+import TeamCard from './TeamCard';
 
-function TeamCards({ids}) {
-
+function TeamCards({ teams }) {
   return (
-    <div className='grid grid-cols-2 gap-4 items-center'>{ids.map((id) => {
-        return <TeamCard id={id}/>
-    })}</div>
-  )
+    <div className="grid grid-cols-2 gap-4 items-center">
+      {teams.map((team) => {
+        return <TeamCard team={team} />;
+      })}
+    </div>
+  );
 }
 
-export default TeamCards
+export default TeamCards;

@@ -1,8 +1,8 @@
 import { useQuery } from 'react-query';
-import { axios } from '../../../lib/axios';
+import { ergastAxios } from '../../../lib/axios';
 
 export const getTeams = (season) => {
-  return axios.get(`${season}/constructors`);
+  return ergastAxios.get(`${season}/constructors`);
 };
 
 export const useTeams = (season) => {

@@ -9,10 +9,7 @@ function Teams() {
   const teamsQuery = useTeamRankings(2022);
 
   if (teamsQuery.isSuccess) {
-    
-    const teams = teamsQuery.data.data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings
-
-    console.log(teams);
+    const teams = teamsQuery.data.data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings;
 
     return (
       <div>
