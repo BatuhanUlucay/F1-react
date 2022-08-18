@@ -15,6 +15,10 @@ export const ergastAxios = Axios.create({
   baseURL: "http://ergast.com/api/f1",
 });
 
+export const wikiAxios = Axios.create({
+  // baseURL: `http://en.wikipedia.org/w/`
+});
+
 axios.interceptors.request.use(requestInterceptor);
 axios.interceptors.response.use(
   (response) => {
