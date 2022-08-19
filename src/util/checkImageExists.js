@@ -1,26 +1,24 @@
-function checkIfImageExists(url, callback) {
-  const img = new Image();
-  img.src = url;
-
-  if (img.complete) {
-    callback(true);
-  } else {
-    img.onload = () => {
-      callback(true);
+async function imageExists(src) {
+  return new Promise((resolve, reject) => {
+    var img = new Image();
+    img.onload = function () {
+      if (img.height !== 0) {
+        resolve(true);
+      } else {
+        resolve(false);
+      }
     };
-
-    img.onerror = () => {
-      callback(false);
+    img.onerror = function (error) {
+      resolve(false);
     };
-  }
+    img.src = src;
+  });
 }
 
-export function checkUrlExists(url) {
-  let res = false;
+export async function doesImageExists(src) {
+  const result = await imageExists(src);
 
-  checkIfImageExists(url, (exists) => {
-    res = exists;
-  });
+  console.log('heeyooy', result, src);
 
-  return res;
+  return result;
 }
