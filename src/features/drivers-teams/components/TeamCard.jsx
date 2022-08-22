@@ -1,20 +1,14 @@
 import React, { useState } from 'react';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import ImageIcon from '@mui/icons-material/Image';
-// import AspectRatio from '@mui/joy/AspectRatio';
-import { useTeam } from '../api/getTeam';
-import { testData } from './teamTestData';
 import wtf from 'wtf_wikipedia';
 import { useTeamInfobox } from '../api/getTeamInfobox';
 import { hashMessage } from '../../../utils/md5hash';
 import { useTeamLogo } from '../api/getTeamLogo';
-
-import { doesImageExists } from '../../../util/checkImageExists';
+import TeamDrivers from './TeamDrivers';
 
 function TeamCard({ team }) {
   const [imgSource, setImgSource] = useState('');
@@ -59,19 +53,24 @@ function TeamCard({ team }) {
     }
 
     return (
-      <Card className="min-w-72 bg-base-100 shadow-xl border-2 border-solid ">
+      <Card className="shadow-xl border-2 border-solid ">
         <CardContent>
-          <div className='h-28 w-28'>
-            {imgSource !== '' ? (
-              <CardMedia
-                component="img"
-                alt="team logo"
-                image={imgSource}
-                className="h-full w-full object-contain"
-              />
-            ) : (
-              <ImageIcon className='h-full w-full object-contain'/>
-            )}
+          <div className="flex">
+            <div className="h-28 w-28">
+              {imgSource !== '' ? (
+                <CardMedia
+                  component="img"
+                  alt="team logo"
+                  image={imgSource}
+                  className="h-full w-full object-contain"
+                />
+              ) : (
+                <ImageIcon className="h-full w-full object-contain" />
+              )}
+            </div>
+            <div className='w-full'>
+              <TeamDrivers team={team} />
+            </div>
           </div>
           <Typography variant="h5" component="div" className="m-auto">
             {team.Constructor.name}

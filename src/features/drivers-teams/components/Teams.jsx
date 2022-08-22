@@ -1,8 +1,6 @@
 import React from 'react';
 import { useTeamRankings } from '../../rankings/api/getTeamRankings';
 import TeamCards from './TeamCards';
-import { testData } from '../../rankings/components/teamsTestData';
-import { useTeams } from '../api/getTeams';
 
 function Teams() {
   //TODO: get the season info from context.
@@ -12,9 +10,7 @@ function Teams() {
     const teams = teamsQuery.data.data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings;
 
     return (
-      <div>
         <TeamCards teams={teams} />
-      </div>
     );
   }
 }
