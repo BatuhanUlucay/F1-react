@@ -115,7 +115,7 @@ export default function PersistentDrawerLeft() {
         </DrawerHeader>
         <Divider />
         <List>
-          {['Standings', 'Races', 'Drivers', 'Teams', 'Circuits'].map((text, index) => (
+          {['Standings', 'Races', 'Teams', 'Circuits'].map((text, index) => (
             <ListItem key={text} disablePadding component={Link} to={`${text.toLowerCase()}`}>
               <ListItemButton>
                 <ListItemText primary={text} />
