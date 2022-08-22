@@ -59,7 +59,7 @@ function TeamCard({ team }) {
     }
 
     return (
-      <Card className="max-w-xs mx-auto">
+      <Card className="min-w-72 bg-base-100 shadow-xl border-2 border-solid ">
         <CardContent>
           <div className='h-28 w-28'>
             {imgSource !== '' ? (
@@ -67,10 +67,10 @@ function TeamCard({ team }) {
                 component="img"
                 alt="team logo"
                 image={imgSource}
-                className="bg-cover"
+                className="h-full w-full object-contain"
               />
             ) : (
-              <ImageIcon />
+              <ImageIcon className='h-full w-full object-contain'/>
             )}
           </div>
           <Typography variant="h5" component="div" className="m-auto">
