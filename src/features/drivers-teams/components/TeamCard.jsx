@@ -4,9 +4,8 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import ImageIcon from '@mui/icons-material/Image';
-import wtf from 'wtf_wikipedia';
 import { useTeamInfobox } from '../api/getTeamInfobox';
-import { hashMessage } from '../../../utils/md5hash';
+import { hashMessage } from '../../../util/md5hash';
 import { useTeamLogo } from '../api/getTeamLogo';
 import TeamDrivers from './TeamDrivers';
 
@@ -68,7 +67,7 @@ function TeamCard({ team }) {
                 <ImageIcon className="h-full w-full object-contain" />
               )}
             </div>
-            <div className='w-full'>
+            <div className="w-full">
               <TeamDrivers team={team} />
             </div>
           </div>

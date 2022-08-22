@@ -11,6 +11,7 @@ export const convertTimeZone = (timeString) => {
 
   const today = new Date();
   const timeZone = today.getTimezoneOffset() / -60;
+  // eslint-disable-next-line no-unused-vars
   let [hours, minutes, second] = timeString.split(':');
 
   if (+hours + timeZone < 10) {
