@@ -8,6 +8,7 @@ import { useTeamInfobox } from '../api/getTeamInfobox';
 import { hashMessage } from '../../../util/md5hash';
 import { useTeamLogo } from '../api/getTeamLogo';
 import TeamDrivers from './TeamDrivers';
+import { Link } from 'react-router-dom';
 
 function TeamCard({ team }) {
   const [imgSource, setImgSource] = useState('');
@@ -55,25 +56,29 @@ function TeamCard({ team }) {
       <Card className="shadow-xl border-2 border-solid ">
         <CardContent>
           <div className="flex">
-            <div className="h-28 w-28">
-              {imgSource !== '' ? (
-                <CardMedia
-                  component="img"
-                  alt="team logo"
-                  image={imgSource}
-                  className="h-full w-full object-contain"
-                />
-              ) : (
-                <ImageIcon className="h-full w-full object-contain" />
-              )}
-            </div>
+            <Link to={team.Constructor.constructorId}>
+              <div className="h-28 w-28">
+                {imgSource !== '' ? (
+                  <CardMedia
+                    component="img"
+                    alt="team logo"
+                    image={imgSource}
+                    className="h-full w-full object-contain"
+                  />
+                ) : (
+                  <ImageIcon className="h-full w-full object-contain" />
+                )}
+              </div>
+            </Link>
             <div className="w-full">
               <TeamDrivers team={team} />
             </div>
           </div>
-          <Typography variant="h5" component="div" className="m-auto">
-            {team.Constructor.name}
-          </Typography>
+          <Link to={team.Constructor.constructorId}>
+            <Typography variant="h5" component="div" className="m-auto">
+              {team.Constructor.name}
+            </Typography>
+          </Link>
         </CardContent>
         {/* <CardActions>
               <Button size="small">Share</Button>
