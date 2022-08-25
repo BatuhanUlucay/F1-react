@@ -5,7 +5,6 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import ImageIcon from '@mui/icons-material/Image';
 import { useTeamInfobox } from '../api/getTeamInfobox';
-import { useTeamLogo } from '../api/getTeamLogo';
 import TeamDrivers from './TeamDrivers';
 import { Link } from 'react-router-dom';
 import { getLogoUrlFromInfobox } from '../../../util/getLogoUrlFromInfobox';
@@ -15,9 +14,8 @@ function TeamCard({ team }) {
 
   const wikiTitle = team.Constructor.url.split('/').pop();
   const infoboxQuery = useTeamInfobox(wikiTitle);
-  const teamLogoQuery = useTeamLogo(wikiTitle);
 
-  if (infoboxQuery.isSuccess && teamLogoQuery.isSuccess) {
+  if (infoboxQuery.isSuccess) {
     let teamInfobox = infoboxQuery.data.infobox();
 
     getLogoUrlFromInfobox(teamInfobox, setImgSource);
