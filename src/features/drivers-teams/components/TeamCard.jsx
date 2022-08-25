@@ -5,52 +5,22 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import ImageIcon from '@mui/icons-material/Image';
 import { useTeamInfobox } from '../api/getTeamInfobox';
-import { hashMessage } from '../../../util/md5hash';
 import { useTeamLogo } from '../api/getTeamLogo';
 import TeamDrivers from './TeamDrivers';
 import { Link } from 'react-router-dom';
+import { getLogoUrlFromInfobox } from '../../../util/getLogoUrlFromInfobox';
 
 function TeamCard({ team }) {
   const [imgSource, setImgSource] = useState('');
 
   const wikiTitle = team.Constructor.url.split('/').pop();
-
   const infoboxQuery = useTeamInfobox(wikiTitle);
-
   const teamLogoQuery = useTeamLogo(wikiTitle);
 
   if (infoboxQuery.isSuccess && teamLogoQuery.isSuccess) {
     let teamInfobox = infoboxQuery.data.infobox();
 
-    if (teamInfobox.data.logo !== undefined) {
-      const logoFileName = teamInfobox.data.logo.data.text;
-
-      const extracted = logoFileName.split(':').pop().replaceAll(' ', '_');
-      const hash = hashMessage(extracted);
-      const firstChar = hash.charAt(0);
-      const firstAndSecond = firstChar + hash.charAt(1);
-      const urlFirst = `https://upload.wikimedia.org/wikipedia/commons/${firstChar}/${firstAndSecond}/${extracted}`;
-
-      const urlSecond = `https://upload.wikimedia.org/wikipedia/en/${firstChar}/${firstAndSecond}/${extracted}`;
-
-      let img = new Image();
-      img.src = urlFirst;
-
-      img.onload = () => {
-        if (img.height !== 0) {
-          setImgSource(urlFirst);
-        }
-      };
-      let img2 = new Image();
-
-      img2.src = urlSecond;
-
-      img2.onload = () => {
-        if (img2.height !== 0) {
-          setImgSource(urlSecond);
-        }
-      };
-    }
+    getLogoUrlFromInfobox(teamInfobox, setImgSource);
 
     return (
       <Card className="shadow-xl border-2 border-solid ">
@@ -80,10 +50,6 @@ function TeamCard({ team }) {
             </Typography>
           </Link>
         </CardContent>
-        {/* <CardActions>
-              <Button size="small">Share</Button>
-              <Button size="small">Learn More</Button>
-            </CardActions> */}
       </Card>
     );
   }
