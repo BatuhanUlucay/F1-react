@@ -6,8 +6,6 @@ export const getTeamInfobox = (title) => {
 };
 
 export const useTeamInfobox = (title, config) => {
-
-  console.log("config",config);
   return useQuery({
     queryKey: ['teamInfoBox', title],
     queryFn: () => getTeamInfobox(title),
