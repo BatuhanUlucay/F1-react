@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import { useTeamInfobox } from '../api/getTeamInfobox';
 import { getLogoUrlFromInfobox } from '../../../util/getLogoUrlFromInfobox';
 import { parseTeamInfo } from '../../../util/parseTeamInfo';
+import InfoEntry from './InfoEntry';
 
 function TeamDetail() {
   const [imgSource, setImgSource] = useState('');
@@ -31,16 +32,16 @@ function TeamDetail() {
       const wikiInfobox = infoboxQuery.data.infobox();
       if (imgSource === '') getLogoUrlFromInfobox(wikiInfobox, setImgSource);
 
-       console.log(wikiInfobox);
+      console.log(wikiInfobox);
 
       const info = parseTeamInfo(wikiInfobox.data);
 
-      console.log("info parsed", info)
+      console.log('info parsed', info);
 
       return (
         <div className="max-w-7xl mx-auto">
-          <Card>
-            <div className="h-28 w-28">
+          <Card className='grid grid-cols-2'>
+            <div className="w-2/3 mx-auto my-auto">
               <CardMedia
                 component="img"
                 alt="team logo"
@@ -49,13 +50,18 @@ function TeamDetail() {
               />
             </div>
             <CardContent>
-              <Typography gutterBottom variant="h5" component="h2">
-                {teamDetails.name}
-              </Typography>
-              <Typography variant="body2" color="textSecondary" component="p">
-                Lizards are a widespread group of squamate reptiles, with over 6,000 species,
-                ranging across all continents except Antarctica
-              </Typography>
+              <div className='text-center my-4'>
+                <Typography gutterBottom variant="h5" component="h2">
+                  {teamDetails.name}
+                </Typography>
+              </div>
+              {Object.keys(info).map(keyString => {
+                return <InfoEntry keyString={keyString} data={info[keyString]} />
+              })}
+              {/* <Typography variant="body2" color="textSecondary" component="p"> */}
+                {/* Lizards are a widespread group of squamate reptiles, with over 6,000 species, */}
+                {/* ranging across all continents except Antarctica */}
+              {/* </Typography> */}
             </CardContent>
           </Card>
         </div>
