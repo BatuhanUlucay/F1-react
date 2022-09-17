@@ -32,11 +32,11 @@ function TeamDetail() {
       const wikiInfobox = infoboxQuery.data.infobox();
       if (imgSource === '') getLogoUrlFromInfobox(wikiInfobox, setImgSource);
 
-      console.log(wikiInfobox);
+      // console.log(wikiInfobox);
 
       const info = parseTeamInfo(wikiInfobox.data);
 
-      console.log('info parsed', info);
+      // console.log('info parsed', info);
 
       return (
         <div className="max-w-7xl mx-auto">

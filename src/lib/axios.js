@@ -12,3 +12,7 @@ export const ergastAxios = Axios.create({
 export const wikiAxios = Axios.create({
   // baseURL: `http://en.wikipedia.org/w/`
 });
+
+export const wikiImageAxios = Axios.create({
+  baseURL: "http://en.wikipedia.org/w/"
+});

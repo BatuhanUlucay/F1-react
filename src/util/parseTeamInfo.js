@@ -61,7 +61,7 @@ export function parseTeamInfo(infobox) {
     allFields.drivers = infobox[key].data.text;
   }
 
-  console.log(keys);
+  // console.log(keys);
 
   return allFields;
 }
