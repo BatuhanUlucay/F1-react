@@ -63,15 +63,15 @@ function DriverDetail() {
     }
 
     return (
-      <Card className="w-1/3">
-        <div className="w-1/3">
-          <CardMedia component="img" alt="Driver photo" height="200" image={profilePhoto} />
+      <Card className="w-2/3 mx-auto flex">
+        <div className="w-1/5 h-1/5" >
+          <CardMedia component="img" alt="Driver photo" image={profilePhoto} />
         </div>
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
+        <CardContent className='ml-8'>
+          <Typography variant="h5" component="div" className='mb-8'>
             {driverDetails.givenName + ' ' + driverDetails.familyName}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
+          <Typography color="text.primary">
             {`Birthday : ${driverDetails.dateOfBirth}`}
           </Typography>
           <Typography>{`Nationality : ${driverDetails.nationality}`}</Typography>
