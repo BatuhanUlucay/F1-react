@@ -10,6 +10,8 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { useDriverStats } from '../api/getDriversStats';
+import { calculateDriverStats } from '../../../util/calculateDriverStats';
 
 //TODO:CLEAN UP HERE
 
@@ -22,6 +24,14 @@ function DriverDetail() {
   const driverDetailsQuery = useDriverDetails(driverId);
 
   const driverPhotoQuery = useDriverPhoto(wikiTitle, { enabled: wikiTitle !== '' });
+
+  const driverStats = useDriverStats(driverId);
+
+  if(driverStats.isSuccess){
+    // console.log();
+    const driverAllRaces = driverStats.data.data.MRData.RaceTable.Races
+    calculateDriverStats(driverAllRaces)
+  }
 
   if (driverDetailsQuery.isSuccess) {
     const driverDetails = driverDetailsQuery.data.data.MRData.DriverTable.Drivers[0];
