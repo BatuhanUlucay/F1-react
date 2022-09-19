@@ -18,20 +18,12 @@ import { calculateDriverStats } from '../../../util/calculateDriverStats';
 function DriverDetail() {
   const [wikiTitle, setWikiTitle] = useState('');
   const [profilePhoto, setProfilePhoto] = useState('');
+  const [stats, setStats] = useState();
 
   const driverId = useParams().driverId;
-
   const driverDetailsQuery = useDriverDetails(driverId);
-
   const driverPhotoQuery = useDriverPhoto(wikiTitle, { enabled: wikiTitle !== '' });
-
   const driverStats = useDriverStats(driverId);
-
-  if(driverStats.isSuccess){
-    // console.log();
-    const driverAllRaces = driverStats.data.data.MRData.RaceTable.Races
-    calculateDriverStats(driverAllRaces)
-  }
 
   if (driverDetailsQuery.isSuccess) {
     const driverDetails = driverDetailsQuery.data.data.MRData.DriverTable.Drivers[0];
@@ -63,6 +55,13 @@ function DriverDetail() {
 
       console.log(driverDetails);
     }
+    if (driverStats.isSuccess) {
+      const driverAllRaces = driverStats.data.data.MRData.RaceTable.Races;
+
+      if (!stats) setStats(calculateDriverStats(driverAllRaces));
+      // console.log(stats);
+    }
+
     return (
       <Card className="w-1/3">
         <div className="w-1/3">
@@ -73,22 +72,23 @@ function DriverDetail() {
             {driverDetails.givenName + ' ' + driverDetails.familyName}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            {driverDetails.dateOfBirth}
-            {driverDetails.nationality}
-            {driverDetails.permanentNumber}
-            {/* TODO:
-            Wins
-            Points
-            Poles
+            {`Birthday : ${driverDetails.dateOfBirth}`}
+          </Typography>
+          <Typography>{`Nationality : ${driverDetails.nationality}`}</Typography>
+          <Typography>{`Permanent number : ${driverDetails.permanentNumber}`}</Typography>
+          {stats && (
+            <>
+              <Typography>{`Career points : ${stats[0]}`}</Typography>
+              <Typography>{`Career wins : ${stats[1]}`}</Typography>
+              <Typography>{`Career podiums : ${stats[2]}`}</Typography>
+            </>
+          )}
+
+          {/* TODO:
             Last win
             Current team
-            */}
-          </Typography>
+          */}
         </CardContent>
-        {/* <CardActions>
-          <Button size="small">Share</Button>
-          <Button size="small">Learn More</Button>
-        </CardActions> */}
       </Card>
     );
   }

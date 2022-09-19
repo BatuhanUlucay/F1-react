@@ -14,4 +14,5 @@ export function calculateDriverStats(races) {
     //podiums
     stats[2] += Number(result.position) <= 3 ? 1 : 0;
   }
+  return stats;
 }
