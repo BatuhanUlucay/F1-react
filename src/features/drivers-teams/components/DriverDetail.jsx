@@ -59,6 +59,7 @@ function DriverDetail() {
       const driverAllRaces = driverStats.data.data.MRData.RaceTable.Races;
 
       if (!stats) setStats(calculateDriverStats(driverAllRaces));
+      //TODO: http://ergast.com/api/f1/drivers/alonso/driverStandings calculate stats like this, it will be way more efficient
       // console.log(stats);
     }
 
