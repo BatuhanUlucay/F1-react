@@ -28,7 +28,6 @@ function DriverDetail() {
   if (driverDetailsQuery.isSuccess) {
     const driverDetails = driverDetailsQuery.data.data.MRData.DriverTable.Drivers[0];
     const wikiUrl = driverDetails.url;
-    // console.log('wikiUrl', wikiUrl);
 
     if (wikiTitle === '') {
       setWikiTitle(decodeURI(wikiUrl).split('/').pop());
@@ -39,17 +38,12 @@ function DriverDetail() {
         driverPhotoQuery.data.data.query.pages[Object.keys(driverPhotoQuery.data.data.query.pages)];
 
       //TODO: some of the photos are not coming from wiki api.
-      // console.log('title', wikiTitle);
 
-      // console.log('temp', temp);
       const temp2 = temp.thumbnail;
 
-      // console.log('temp2', temp2);
       const temp3 = temp2.source?.replaceAll('thumb/', '').split('/');
 
       temp3.pop();
-
-      // console.log('URL', temp3.join('/'));
 
       setProfilePhoto(temp3.join('/'));
 
@@ -60,7 +54,6 @@ function DriverDetail() {
 
       if (!stats) setStats(calculateDriverStats(driverAllRaces));
       //TODO: http://ergast.com/api/f1/drivers/alonso/driverStandings calculate stats like this, it will be way more efficient
-      // console.log(stats);
     }
 
     return (

@@ -43,26 +43,6 @@ export function parseTeamInfo(infobox) {
     allFields.engine = infobox[key].data.text;
   }
 
-  // //constructor champs
-  // key = findSubstring(keys, 'cons_champ');
-  // if (key !== '') {
-  //   allFields.cons_champs = infobox[key].data.text;
-  // }
-
-  // //drivers champ
-  // key = findSubstring(keys, 'drivers_champ');
-  // if (key !== '') {
-  //   allFields.driver_champs = infobox[key].data.text;
-  // }
-
-  //drivers
-  // key = findSubstring(keys, 'drivers');
-  // if (key !== '') {
-  //   allFields.drivers = infobox[key].data.text;
-  // }
-
-  // console.log(keys);
-
   return allFields;
 }
 

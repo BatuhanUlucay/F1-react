@@ -32,9 +32,6 @@ function NextRaceCountdown({ nextDate, lastDate }) {
 
   const intervalTime = endTime - lastTime;
 
-  console.log(stratTime);
-  console.log(endTime);
-
   const remainingTime = endTime - stratTime;
   const days = Math.ceil(intervalTime / daySeconds);
   const daysDuration = days * daySeconds;

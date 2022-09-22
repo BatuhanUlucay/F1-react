@@ -29,7 +29,6 @@ function TeamDetail() {
     const teamDetails = teamDetailsQuery.data.data.MRData.ConstructorTable.Constructors[0];
     const wikiUrl = teamDetails.url;
 
-    console.log(teamDetails);
 
     if (wikiTitle === '') {
       setWikiTitle(wikiUrl.split('/').pop());
@@ -43,7 +42,6 @@ function TeamDetail() {
 
       const drivers = teamDriversQuery.data.data.MRData.DriverTable.Drivers;
 
-      console.log(teamStatsQuery.data.data.MRData.StandingsTable.StandingsLists);
       const championships = calculateTeamStats(
         teamStatsQuery.data.data.MRData.StandingsTable.StandingsLists
       );
