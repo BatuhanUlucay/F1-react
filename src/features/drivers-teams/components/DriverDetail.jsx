@@ -28,20 +28,23 @@ function DriverDetail() {
   if (driverDetailsQuery.isSuccess) {
     const driverDetails = driverDetailsQuery.data.data.MRData.DriverTable.Drivers[0];
     const wikiUrl = driverDetails.url;
+    console.log(wikiUrl);
 
     if (wikiTitle === '') {
       setWikiTitle(decodeURI(wikiUrl).split('/').pop());
     }
 
     if (driverPhotoQuery.isSuccess && profilePhoto === '') {
+
       const temp =
         driverPhotoQuery.data.data.query.pages[Object.keys(driverPhotoQuery.data.data.query.pages)];
 
-      //TODO: some of the photos are not coming from wiki api.
+      console.log(wikiTitle);
+      console.log(driverPhotoQuery.data);
 
       const temp2 = temp.thumbnail;
 
-      const temp3 = temp2.source?.replaceAll('thumb/', '').split('/');
+      const temp3 = temp2?.source?.replaceAll('thumb/', '').split('/');
 
       temp3.pop();
 
@@ -58,16 +61,14 @@ function DriverDetail() {
 
     return (
       <Card className="w-2/3 mx-auto flex">
-        <div className="w-1/5 h-1/5" >
+        <div className="w-1/5 h-1/5">
           <CardMedia component="img" alt="Driver photo" image={profilePhoto} />
         </div>
-        <CardContent className='ml-8'>
-          <Typography variant="h5" component="div" className='mb-8'>
+        <CardContent className="ml-8">
+          <Typography variant="h5" component="div" className="mb-8">
             {driverDetails.givenName + ' ' + driverDetails.familyName}
           </Typography>
-          <Typography color="text.primary">
-            {`Birthday : ${driverDetails.dateOfBirth}`}
-          </Typography>
+          <Typography color="text.primary">{`Birthday : ${driverDetails.dateOfBirth}`}</Typography>
           <Typography>{`Nationality : ${driverDetails.nationality}`}</Typography>
           <Typography>{`Permanent number : ${driverDetails.permanentNumber}`}</Typography>
           {stats && (

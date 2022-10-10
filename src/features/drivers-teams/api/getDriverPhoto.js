@@ -3,7 +3,7 @@ import { wikiImageAxios } from '../../../lib/axios';
 
 export const getDriverPhoto = (wikiTitle) => {
   return wikiImageAxios.get(`api.php`, {
-    params: { action: 'query', prop: 'pageimages', format: 'json', titles: wikiTitle, origin: "*" },
+    params: { action: 'query', prop: 'pageimages', format: 'json', titles: wikiTitle, origin: "*" , redirects: ""},
   });
 };
 

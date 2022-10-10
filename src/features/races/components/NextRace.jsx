@@ -1,26 +1,16 @@
 import React from 'react';
 import NextRaceCountdown from './NextRaceCountdown';
-import { useQuery } from 'react-query';
-import axios from 'axios';
 
 import { useLastRace } from '../api/getLastRace';
 import { useNextRace } from '../api/getNextRace';
-
 import Card from '@mui/material/Card';
-// import CardActions from "@mui/material/CardActions";
-// import CardContent from "@mui/material/CardContent";
-// import CardMedia from "@mui/material/CardMedia";
-// import Button from "@mui/material/Button";
 import Typography from '@mui/material/Typography';
-
-// import { css } from "@emotion/react";
 
 const lookup = require('coordinate_to_country');
 
 function NextRace() {
-
-const lastRaceQuery = useLastRace();
-const nextRaceQuery = useNextRace();
+  const lastRaceQuery = useLastRace();
+  const nextRaceQuery = useNextRace();
 
   if (lastRaceQuery.isSuccess && nextRaceQuery.isSuccess) {
     const nextRace = nextRaceQuery.data.data.MRData.RaceTable.Races[0];
@@ -64,10 +54,8 @@ const nextRaceQuery = useNextRace();
         <Typography variant="h2" component="div" sx={{ textAlign: 'center', marginBottom: '1rem' }}>
           Next Race
         </Typography>
-        <div className='text-center'
-        >
-          <img 
-        //   className='mr-4'
+        <div className="text-center">
+          <img
             src={`https://countryflagsapi.com/png/${lookup(
               +nextRaceCircuit.Location.lat,
               +nextRaceCircuit.Location.long,
