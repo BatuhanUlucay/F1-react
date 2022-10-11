@@ -14,8 +14,8 @@ function GenericTable({ rows, columns }) {
         <TableHead>
           <TableRow>
             <TableCell />
-            {columns.map((column) => {
-              return <TableCell align='left'>{column}</TableCell>;
+            {columns.map((column, index) => {
+              return <TableCell key={index} align='left'>{column}</TableCell>;
             })}
           </TableRow>
         </TableHead>

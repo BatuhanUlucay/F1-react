@@ -25,10 +25,10 @@ function NextRace() {
     const nextRaceCircuit = nextRace.Circuit;
 
     const [nRyear, nRmonth, nRday] = nextRaceDate.split('-');
-    const [nRhours, nRminutes, nRsecond] = nextRaceTime.split(':');
+    const [nRhours, nRminutes] = nextRaceTime.split(':');
 
     const [lRyear, lRmonth, lRday] = lastRaceDate.split('-');
-    const [lRhours, lRminutes, lRsecond] = lastRaceTime.split(':');
+    const [lRhours, lRminutes] = lastRaceTime.split(':');
 
     const today = new Date();
     const timeZone = today.getTimezoneOffset() / -60;

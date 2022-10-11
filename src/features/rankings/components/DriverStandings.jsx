@@ -27,7 +27,7 @@ function DriverStandings() {
     const driverRows = (
       <>
         {driverRankings.map((driver) => {
-          return <DriverRow driver={driver}></DriverRow>;
+          return <DriverRow key={`${driver.Driver.driverId}`} driver={driver}></DriverRow>;
         })}
       </>
     );
