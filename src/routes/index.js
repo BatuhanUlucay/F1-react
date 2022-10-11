@@ -10,7 +10,7 @@ import DriverDetail from "../features/drivers-teams/components/DriverDetail"
 const AppRoutes = () => {
   const commonRoutes = [
     { path: '/', element: <Landing /> },
-    { path: 'races', element: <Races /> },
+    { path: 'schedule', element: <Races /> },
     { path: 'standings', element: <Standings /> },
     { path: 'teams', element: <Teams /> },
     { path: 'teams/:teamId', element: <TeamDetail /> },

@@ -1,132 +1,163 @@
-import * as React from 'react';
-import { styled, useTheme } from '@mui/material/styles';
+import React, { useState } from 'react';
 import Box from '@mui/material/Box';
-import Drawer from '@mui/material/Drawer';
-import CssBaseline from '@mui/material/CssBaseline';
-import MuiAppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
-import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
-import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
+import AppBar from '@mui/material/AppBar';
+import Menu from '@mui/material/Menu';
+import Button from '@mui/material/Button';
+import MenuItem from '@mui/material/MenuItem';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { Link } from 'react-router-dom';
 
-const drawerWidth = 240;
+const pages = ['Schedule', 'Standings', 'Drivers', 'Teams'];
 
-const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
-  ({ theme, open }) => ({
-    flexGrow: 1,
-    padding: theme.spacing(3),
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    marginLeft: `-${drawerWidth}px`,
-    ...(open && {
-      transition: theme.transitions.create('margin', {
-        easing: theme.transitions.easing.easeOut,
-        duration: theme.transitions.duration.enteringScreen,
-      }),
-      marginLeft: 0,
-    }),
-  })
-);
+function Navbar() {
+  const [anchorElNav, setAnchorElNav] = useState(null);
+  const [showDropdown, setShowDropdown] = useState(false);
 
-const AppBar = styled(MuiAppBar, {
-  shouldForwardProp: (prop) => prop !== 'open',
-})(({ theme, open }) => ({
-  transition: theme.transitions.create(['margin', 'width'], {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen,
-  }),
-  ...(open && {
-    width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: `${drawerWidth}px`,
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  }),
-}));
-
-const DrawerHeader = styled('div')(({ theme }) => ({
-  display: 'flex',
-  alignItems: 'center',
-  padding: theme.spacing(0, 1),
-  // necessary for content to be below app bar
-  ...theme.mixins.toolbar,
-  justifyContent: 'flex-end',
-}));
-
-export default function PersistentDrawerLeft() {
-  const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
-
-  const handleDrawerOpen = () => {
-    setOpen(true);
+  const handleOpenNavMenu = (event) => {
+    setAnchorElNav(event.currentTarget);
   };
 
-  const handleDrawerClose = () => {
-    setOpen(false);
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
+  };
+
+  const handleMouseOver = (page) => {
+    setShowDropdown(true);
+  };
+
+  const handleMouseLeave = () => {
+    setShowDropdown(false);
   };
 
   return (
-    <Box sx={{ display: 'flex' }}>
-      <CssBaseline />
-      <AppBar position="fixed" open={open}>
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            sx={{ mr: 2, ...(open && { display: 'none' }) }}
+    <>
+      <AppBar className="h-16 justify-center">
+        <Box className="flex items-center h-full">
+          <Typography
+            variant="h5"
+            noWrap
+            component="a"
+            href="/"
+            sx={{
+              mr: 2,
+              ml: '5%',
+              display: { xs: 'none', md: 'flex' },
+              fontFamily: 'monospace',
+              color: 'inherit',
+              textDecoration: 'none',
+            }}
           >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap component={Link} to="/">
             F1
           </Typography>
-        </Toolbar>
+          <Box sx={{ ml: 8, flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+            <IconButton size="large" onClick={handleOpenNavMenu} color="inherit">
+              <MenuIcon />
+            </IconButton>
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorElNav}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'left',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'left',
+              }}
+              open={Boolean(anchorElNav)}
+              onClose={handleCloseNavMenu}
+              sx={{
+                display: { xs: 'block', md: 'none' },
+              }}
+            >
+              {pages.map((page) => (
+                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                  <Typography
+                    textAlign="center"
+                    component={Link}
+                    to={page.toLowerCase()}
+                    sx={{ color: 'inherit', textDecoration: 'none', textTransform: 'none' }}
+                  >
+                    {page}
+                  </Typography>
+                </MenuItem>
+              ))}
+            </Menu>
+          </Box>
+          <Box className="w-1/2 mx-auto h-full">
+            <Typography
+              variant="h5"
+              noWrap
+              component="a"
+              href=""
+              sx={{
+                mr: 2,
+                display: { xs: 'flex', md: 'none' },
+                flexGrow: 1,
+                color: 'inherit',
+                textDecoration: 'none',
+              }}
+            >
+              F1
+            </Typography>
+            <Box
+              sx={{
+                width: '20',
+                
+                flexGrow: 1,
+                justifyContent: 'center',
+                display: { xs: 'none', md: 'flex' },
+              }}
+              className="h-full"
+            >
+              {pages.map((page) => (
+                <Button
+                  variant="h5"
+                  key={page}
+                  onClick={handleCloseNavMenu}
+                  sx={{ mx: 4, color: 'white', display: 'flex', alignItems: 'center' }}
+                  onMouseOver={() =>
+                    (page === 'Drivers' || page === 'Teams') && handleMouseOver(page)
+                  }
+                  onMouseLeave={handleMouseLeave}
+                >
+                  <Typography
+                    component={Link}
+                    to={page.toLowerCase()}
+                    sx={{
+                      color: 'inherit',
+                      textDecoration: 'none',
+                      textTransform: 'none',
+                      fontSize: '1rem',
+                      display: 'flex',
+                      my: 'auto',
+                    }}
+                  >
+                    {page}
+                    {(page === 'Drivers' || page === 'Teams') && (
+                      <KeyboardArrowDownIcon className="my-auto" />
+                    )}
+                  </Typography>
+                </Button>
+              ))}
+            </Box>
+          </Box>
+        </Box>
       </AppBar>
-      <Drawer
-        sx={{
-          width: drawerWidth,
-          flexShrink: 0,
-          '& .MuiDrawer-paper': {
-            width: drawerWidth,
-            boxSizing: 'border-box',
-          },
-        }}
-        variant="persistent"
-        anchor="left"
-        open={open}
-      >
-        <DrawerHeader>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-          </IconButton>
-        </DrawerHeader>
-        <Divider />
-        <List>
-          {['Standings', 'Races', 'Teams', 'Circuits'].map((text, index) => (
-            <ListItem key={text} disablePadding component={Link} to={`${text.toLowerCase()}`}>
-              <ListItemButton>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
-      </Drawer>
-      <Main open={open}>
-        <DrawerHeader />
-      </Main>
-    </Box>
+      {showDropdown && (
+        <Box
+          onMouseOver={handleMouseOver}
+          onMouseLeave={handleMouseLeave}
+          className="bg-black h-48"
+        ></Box>
+      )}
+    </>
   );
 }
+
+export default Navbar;
