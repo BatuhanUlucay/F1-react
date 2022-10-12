@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
+// import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -10,12 +10,15 @@ import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { Link } from 'react-router-dom';
+import DriversDropdown from '../../features/drivers-teams/components/DriversDropdown';
+import TeamsDropdown from '../../features/drivers-teams/components/TeamsDropdown';
 
 const pages = ['Schedule', 'Standings', 'Drivers', 'Teams'];
 
 function Navbar() {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [showDropdown, setShowDropdown] = useState(false);
+  const [dropdown, setDropdown] = useState('');
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -26,6 +29,7 @@ function Navbar() {
   };
 
   const handleMouseOver = (page) => {
+    setDropdown(page);
     setShowDropdown(true);
   };
 
@@ -35,7 +39,7 @@ function Navbar() {
 
   return (
     <>
-      <AppBar className="h-16 justify-center">
+      <AppBar className="h-16 justify-center" position="static">
         <Box className="flex items-center h-full">
           <Typography
             variant="h5"
@@ -108,7 +112,7 @@ function Navbar() {
             <Box
               sx={{
                 width: '20',
-                
+
                 flexGrow: 1,
                 justifyContent: 'center',
                 display: { xs: 'none', md: 'flex' },
@@ -121,9 +125,9 @@ function Navbar() {
                   key={page}
                   onClick={handleCloseNavMenu}
                   sx={{ mx: 4, color: 'white', display: 'flex', alignItems: 'center' }}
-                  onMouseOver={() =>
-                    (page === 'Drivers' || page === 'Teams') && handleMouseOver(page)
-                  }
+                  onMouseOver={() => {
+                    if (page === 'Drivers' || page === 'Teams') handleMouseOver(page);
+                  }}
                   onMouseLeave={handleMouseLeave}
                 >
                   <Typography
@@ -151,10 +155,12 @@ function Navbar() {
       </AppBar>
       {showDropdown && (
         <Box
-          onMouseOver={handleMouseOver}
+          onMouseOver={() => handleMouseOver(dropdown)}
           onMouseLeave={handleMouseLeave}
           className="bg-black h-48"
-        ></Box>
+        >
+          {dropdown === 'Drivers' ? <DriversDropdown /> : <TeamsDropdown />}
+        </Box>
       )}
     </>
   );
