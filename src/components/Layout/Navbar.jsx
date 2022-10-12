@@ -157,7 +157,7 @@ function Navbar() {
         <Box
           onMouseOver={() => handleMouseOver(dropdown)}
           onMouseLeave={handleMouseLeave}
-          className="bg-black h-96"
+          className="bg-black invisible lg:visible absolute w-full opacity-90"
         >
           {dropdown === 'Drivers' ? <DriversDropdown /> : <TeamsDropdown />}
         </Box>
