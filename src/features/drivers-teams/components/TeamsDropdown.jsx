@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useTeamRankings } from '../../rankings/api/getTeamRankings';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import { Link } from 'react-router-dom';
 
 function TeamsDropdown() {
   const [hovered, setHovered] = useState('');
@@ -23,18 +24,20 @@ function TeamsDropdown() {
         <div className="grid grid-rows-3 grid-flow-col justify-around">
           {teams.map((team) => {
             return (
-              <div
-                className={`h-8 w-56 border-solid border-r border-b border-t-0 border-l-0 rounded-sm ${
-                  team.Constructor.name === hovered
-                    ? 'border-red-600 text-red-600'
-                    : 'border-white text-white'
-                } mx-8 my-4 text-center`}
-                onMouseOver={handleMouseOver}
-                onMouseLeave={handleMouseLeave}
-              >
-                {team.Constructor.name}
-                <KeyboardArrowRightIcon className="float-right" />
-              </div>
+              <Link to={`teams/${team.Constructor.constructorId}`}>
+                <div
+                  className={`h-8 w-56 border-solid border-r border-b border-t-0 border-l-0 rounded-sm ${
+                    team.Constructor.name === hovered
+                      ? 'border-red-600 text-red-600'
+                      : 'border-white text-white'
+                  } mx-8 my-4 text-center`}
+                  onMouseOver={handleMouseOver}
+                  onMouseLeave={handleMouseLeave}
+                >
+                  {team.Constructor.name}
+                  <KeyboardArrowRightIcon className="float-right" />
+                </div>
+              </Link>
             );
           })}
         </div>

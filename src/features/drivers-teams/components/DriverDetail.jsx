@@ -27,6 +27,8 @@ function DriverDetail() {
       setWikiTitle(decodeURI(wikiUrl).split('/').pop());
     }
 
+    //FIXME: PP is not changing. Fix here.
+
     if (driverPhotoQuery.isSuccess && profilePhoto === '' && driverStats.isSuccess) {
       const profilePic = driverPhotoQuery.data.data.query.pages[
         Object.keys(driverPhotoQuery.data.data.query.pages)
