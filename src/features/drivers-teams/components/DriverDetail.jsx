@@ -16,7 +16,7 @@ function DriverDetail() {
 
   const driverId = useParams().driverId;
   const driverDetailsQuery = useDriverDetails(driverId);
-  const driverPhotoQuery = useDriverPhoto(wikiTitle, { enabled: wikiTitle !== '' });
+  const driverPhotoQuery = useDriverPhoto(wikiTitle, { enabled: !!wikiTitle });
   const driverStats = useDriverStats(driverId);
 
   if (driverDetailsQuery.isSuccess) {
@@ -27,7 +27,6 @@ function DriverDetail() {
       setWikiTitle(decodeURI(wikiUrl).split('/').pop());
     }
 
-    //FIXME: PP is not changing. Fix here.
 
     if (driverPhotoQuery.isSuccess && profilePhoto === '' && driverStats.isSuccess) {
       const profilePic = driverPhotoQuery.data.data.query.pages[
@@ -46,22 +45,44 @@ function DriverDetail() {
     }
 
     return (
-      <Card className="w-2/3 mx-auto flex">
-        <div className="w-1/5 h-1/5">
+      <Card className="w-2/3 mx-auto flex mt-24">
+        <div className="w-1/3">
           <CardMedia component="img" alt="Driver photo" image={profilePhoto} />
         </div>
-        <CardContent className="ml-8">
-          <Typography variant="h5" component="div" className="mb-8">
+        <CardContent className="mx-auto w-1/2">
+          <Typography variant="h2" component="div" className="mb-8">
             {driverDetails.givenName + ' ' + driverDetails.familyName}
           </Typography>
-          <Typography color="text.primary">{`Birthday : ${driverDetails.dateOfBirth}`}</Typography>
-          <Typography>{`Nationality : ${driverDetails.nationality}`}</Typography>
-          <Typography>{`Permanent number : ${driverDetails.permanentNumber}`}</Typography>
+          <div className="grid grid-cols-2 mt-16">
+            <Typography className="font-bold text-2xl">Nationality</Typography>
+            <Typography className="font-medium text-2xl">{driverDetails.nationality}</Typography>
+          </div>
+          <div className="grid grid-cols-2">
+            <Typography className="font-bold text-2xl">Age</Typography>
+            <Typography className="font-medium text-2xl">
+              {new Date().getFullYear() - driverDetails.dateOfBirth.split('-')[0]}
+            </Typography>
+          </div>
+          <div className="grid grid-cols-2">
+            <Typography className="font-bold text-2xl">Permanent number</Typography>
+            <Typography className="font-medium text-2xl">
+              {driverDetails.permanentNumber}
+            </Typography>
+          </div>
           {stats && (
             <>
-              <Typography>{`Career points : ${stats[0]}`}</Typography>
-              <Typography>{`Career wins : ${stats[1]}`}</Typography>
-              <Typography>{`Career podiums : ${stats[2]}`}</Typography>
+              <div className="grid grid-cols-2">
+                <Typography className="font-bold text-2xl">Carreer Points</Typography>
+                <Typography className="font-medium text-2xl">{stats[0]}</Typography>
+              </div>
+              <div className="grid grid-cols-2">
+                <Typography className="font-bold text-2xl">Carreer Wins</Typography>
+                <Typography className="font-medium text-2xl">{stats[1]}</Typography>
+              </div>
+              <div className="grid grid-cols-2">
+                <Typography className="font-bold text-2xl">Carreer Podiums</Typography>
+                <Typography className="font-medium text-2xl">{stats[2]}</Typography>
+              </div>
             </>
           )}
 

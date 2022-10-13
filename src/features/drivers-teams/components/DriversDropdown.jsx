@@ -23,7 +23,7 @@ function DriversDropdown() {
         <div className="grid grid-rows-5 grid-flow-col justify-around">
           {drivers.map((driver) => {
             return (
-              <Link to={`drivers/${driver.Driver.driverId}`}>
+              <Link to={`drivers/${driver.Driver.driverId}`} reloadDocument>
                 <div
                   className={`w-56 h-8 border-solid border-r border-b border-t-0 border-l-0 rounded-sm ${
                     driver.Driver.givenName + ' ' + driver.Driver.familyName === hovered
