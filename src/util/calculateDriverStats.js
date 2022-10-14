@@ -16,3 +16,15 @@ export function calculateDriverStats(races) {
   }
   return stats;
 }
+
+export function calculateDriverChamps(seasons) {
+  let championships = 0;
+  console.log(seasons);
+
+  for (const season of seasons) {
+    const position = season.DriverStandings[0].position;
+    if (position === '1') championships++;
+  }
+
+  return championships;
+}

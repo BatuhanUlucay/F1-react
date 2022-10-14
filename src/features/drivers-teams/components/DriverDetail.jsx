@@ -7,17 +7,20 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { useDriverStats } from '../api/getDriversStats';
-import { calculateDriverStats } from '../../../util/calculateDriverStats';
+import { calculateDriverChamps, calculateDriverStats } from '../../../util/calculateDriverStats';
+import { useDriverChamps } from '../api/getDriverChamps';
 
 function DriverDetail() {
   const [wikiTitle, setWikiTitle] = useState('');
   const [profilePhoto, setProfilePhoto] = useState('');
   const [stats, setStats] = useState();
+  const [champs, setChamps] = useState(0);
 
   const driverId = useParams().driverId;
   const driverDetailsQuery = useDriverDetails(driverId);
   const driverPhotoQuery = useDriverPhoto(wikiTitle, { enabled: !!wikiTitle });
-  const driverStats = useDriverStats(driverId);
+  const driverStatsQuery = useDriverStats(driverId);
+  const driverChampsQuery = useDriverChamps(driverId);
 
   if (driverDetailsQuery.isSuccess) {
     const driverDetails = driverDetailsQuery.data.data.MRData.DriverTable.Drivers[0];
@@ -27,21 +30,28 @@ function DriverDetail() {
       setWikiTitle(decodeURI(wikiUrl).split('/').pop());
     }
 
-
-    if (driverPhotoQuery.isSuccess && profilePhoto === '' && driverStats.isSuccess) {
+    if (
+      driverPhotoQuery.isSuccess &&
+      profilePhoto === '' &&
+      driverStatsQuery.isSuccess &&
+      driverChampsQuery.isSuccess
+    ) {
       const profilePic = driverPhotoQuery.data.data.query.pages[
         Object.keys(driverPhotoQuery.data.data.query.pages)
       ].thumbnail.source
         .replaceAll('thumb/', '')
         .split('/');
 
-      const driverAllRaces = driverStats.data.data.MRData.RaceTable.Races;
+      const driverAllRaces = driverStatsQuery.data.data.MRData.RaceTable.Races;
 
       profilePic.pop();
 
       setProfilePhoto(profilePic.join('/'));
 
       if (!stats) setStats(calculateDriverStats(driverAllRaces));
+
+      const allSeasons = driverChampsQuery.data.data.MRData.StandingsTable.StandingsLists;
+      setChamps(calculateDriverChamps(allSeasons));
     }
 
     return (
@@ -67,6 +77,12 @@ function DriverDetail() {
             <Typography className="font-bold text-2xl">Permanent number</Typography>
             <Typography className="font-medium text-2xl">
               {driverDetails.permanentNumber}
+            </Typography>
+          </div>
+          <div className="grid grid-cols-2">
+            <Typography className="font-bold text-2xl">Championships</Typography>
+            <Typography className="font-medium text-2xl">
+              {champs}
             </Typography>
           </div>
           {stats && (
