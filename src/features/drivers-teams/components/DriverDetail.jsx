@@ -58,54 +58,40 @@ function DriverDetail() {
     return (
       <Card className="lg:w-2/3 mx-auto lg:flex mt-24">
         <div className="md:w-1/3 w-2/3 mx-auto">
-          <CardMedia component="img" alt="Driver photo" image={profilePhoto} />
+          <CardMedia component="img" alt="DriverPhoto" image={profilePhoto} />
         </div>
         <CardContent className="mx-auto md:w-1/2 w-full">
           <Typography variant="h2" component="div" className="mb-8 text-center">
             {driverDetails.givenName + ' ' + driverDetails.familyName}
           </Typography>
           <div className="grid grid-cols-2 mt-16">
-            <Typography className="font-bold text-2xl">Nationality</Typography>
-            <Typography className="font-medium text-2xl">{driverDetails.nationality}</Typography>
-          </div>
-          <div className="grid grid-cols-2">
-            <Typography className="font-bold text-2xl">Age</Typography>
-            <Typography className="font-medium text-2xl">
+            <Typography className="font-bold text-2xl mt-4">Nationality</Typography>
+            <Typography className="font-medium text-md mt-4">{driverDetails.nationality}</Typography>
+            <Typography className="font-bold text-2xl mt-4">Age</Typography>
+            <Typography className="font-medium text-md mt-4">
               {new Date().getFullYear() - driverDetails.dateOfBirth.split('-')[0]}
             </Typography>
-          </div>
-          <div className="grid grid-cols-2">
-            <Typography className="font-bold text-2xl">Permanent number</Typography>
-            <Typography className="font-medium text-2xl">
+            <Typography className="font-bold text-2xl mt-4">Permanent number</Typography>
+            <Typography className="font-medium text-md mt-4">
               {driverDetails.permanentNumber}
             </Typography>
-          </div>
-          <div className="grid grid-cols-2">
-            <Typography className="font-bold text-2xl">Championships</Typography>
-            <Typography className="font-medium text-2xl">{champs}</Typography>
+            <Typography className="font-bold text-2xl mt-4">Championships</Typography>
+            <Typography className="font-medium text-md mt-4">{champs}</Typography>
           </div>
           {stats && (
             <>
               <div className="grid grid-cols-2">
-                <Typography className="font-bold text-2xl">Carreer Points</Typography>
-                <Typography className="font-medium text-2xl">{stats[0]}</Typography>
-              </div>
-              <div className="grid grid-cols-2">
-                <Typography className="font-bold text-2xl">Carreer Wins</Typography>
-                <Typography className="font-medium text-2xl">{stats[1]}</Typography>
-              </div>
-              <div className="grid grid-cols-2">
-                <Typography className="font-bold text-2xl">Carreer Podiums</Typography>
-                <Typography className="font-medium text-2xl">{stats[2]}</Typography>
-              </div>
-              <div className="grid grid-cols-2">
-                <Typography className="font-bold text-2xl">First Entry</Typography>
-                <Typography className="font-medium text-2xl">{stats[3]}</Typography>
-              </div>
-              <div className="grid grid-cols-2">
-                <Typography className="font-bold text-2xl">Latest Team</Typography>
+                <Typography className="font-bold text-2xl mt-4">Carreer Points</Typography>
+                <Typography className="font-medium text-md mt-4">{stats[0]}</Typography>
+                <Typography className="font-bold text-2xl mt-4">Carreer Wins</Typography>
+                <Typography className="font-medium text-md mt-4">{stats[1]}</Typography>
+                <Typography className="font-bold text-2xl mt-4">Carreer Podiums</Typography>
+                <Typography className="font-medium text-md mt-4">{stats[2]}</Typography>
+                <Typography className="font-bold text-2xl mt-4">First Entry</Typography>
+                <Typography className="font-medium text-md mt-4">{stats[3]}</Typography>
+                <Typography className="font-bold text-2xl mt-4">Latest Team</Typography>
                 <Link to={`/teams/${stats[4].constructorId}`}>
-                  <Typography className="font-medium text-2xl">{stats[4].name}</Typography>
+                  <Typography className="font-medium text-md mt-4">{stats[4].name}</Typography>
                 </Link>
               </div>
             </>
