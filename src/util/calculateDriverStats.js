@@ -14,12 +14,14 @@ export function calculateDriverStats(races) {
     //podiums
     stats[2] += Number(result.position) <= 3 ? 1 : 0;
   }
-  return stats;
+
+  const firstSeason = races[0].season;
+  const latestTeam = races[races.length - 1].Results[0].Constructor;
+  return [...stats, firstSeason, latestTeam];
 }
 
 export function calculateDriverChamps(seasons) {
   let championships = 0;
-  console.log(seasons);
 
   for (const season of seasons) {
     const position = season.DriverStandings[0].position;

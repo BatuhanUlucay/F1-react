@@ -9,6 +9,7 @@ import Typography from '@mui/material/Typography';
 import { useDriverStats } from '../api/getDriversStats';
 import { calculateDriverChamps, calculateDriverStats } from '../../../util/calculateDriverStats';
 import { useDriverChamps } from '../api/getDriverChamps';
+import { Link } from 'react-router-dom';
 
 function DriverDetail() {
   const [wikiTitle, setWikiTitle] = useState('');
@@ -81,9 +82,7 @@ function DriverDetail() {
           </div>
           <div className="grid grid-cols-2">
             <Typography className="font-bold text-2xl">Championships</Typography>
-            <Typography className="font-medium text-2xl">
-              {champs}
-            </Typography>
+            <Typography className="font-medium text-2xl">{champs}</Typography>
           </div>
           {stats && (
             <>
@@ -99,13 +98,18 @@ function DriverDetail() {
                 <Typography className="font-bold text-2xl">Carreer Podiums</Typography>
                 <Typography className="font-medium text-2xl">{stats[2]}</Typography>
               </div>
+              <div className="grid grid-cols-2">
+                <Typography className="font-bold text-2xl">First Entry</Typography>
+                <Typography className="font-medium text-2xl">{stats[3]}</Typography>
+              </div>
+              <div className="grid grid-cols-2">
+                <Typography className="font-bold text-2xl">Latest Team</Typography>
+                <Link to={`/teams/${stats[4].constructorId}`}>
+                  <Typography className="font-medium text-2xl">{stats[4].name}</Typography>
+                </Link>
+              </div>
             </>
           )}
-
-          {/* TODO:
-            Last win
-            Current team
-          */}
         </CardContent>
       </Card>
     );
