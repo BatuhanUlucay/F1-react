@@ -56,12 +56,12 @@ function DriverDetail() {
     }
 
     return (
-      <Card className="w-2/3 mx-auto flex mt-24">
-        <div className="w-1/3">
+      <Card className="lg:w-2/3 mx-auto lg:flex mt-24">
+        <div className="md:w-1/3 w-2/3 mx-auto">
           <CardMedia component="img" alt="Driver photo" image={profilePhoto} />
         </div>
-        <CardContent className="mx-auto w-1/2">
-          <Typography variant="h2" component="div" className="mb-8">
+        <CardContent className="mx-auto md:w-1/2 w-full">
+          <Typography variant="h2" component="div" className="mb-8 text-center">
             {driverDetails.givenName + ' ' + driverDetails.familyName}
           </Typography>
           <div className="grid grid-cols-2 mt-16">
