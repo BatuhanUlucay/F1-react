@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useTeamDetails } from '../api/getTeamDetail';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Typography from '@material-ui/core/Typography';
+import Card from '@mui/material/Card';
+
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { useTeamInfobox } from '../api/getTeamInfobox';
 import { getLogoUrlFromInfobox } from '../../../util/getLogoUrlFromInfobox';
@@ -29,7 +30,6 @@ function TeamDetail() {
     const teamDetails = teamDetailsQuery.data.data.MRData.ConstructorTable.Constructors[0];
     const wikiUrl = teamDetails.url;
 
-
     if (wikiTitle === '') {
       setWikiTitle(wikiUrl.split('/').pop());
     }
@@ -47,7 +47,7 @@ function TeamDetail() {
       );
 
       return (
-        <div className="max-w-7xl mx-auto shadow-2xl">
+        <div className="max-w-7xl mx-auto shadow-2xl mt-24 grid grid-cols-2">
           <Card className="grid grid-cols-2">
             <div className="w-2/3 mx-auto my-auto">
               <CardMedia
@@ -64,7 +64,7 @@ function TeamDetail() {
                 </Typography>
               </div>
               {Object.keys(info).map((keyString) => (
-                <Box className="my-2">
+                <Box className="my-2" key={keyString}>
                   {keyString[0].toUpperCase() + keyString.slice(1)} : {info[keyString]}
                 </Box>
               ))}
@@ -72,7 +72,7 @@ function TeamDetail() {
               <Box className="my-2">
                 Drivers :{' '}
                 {drivers.map((driver) => (
-                  <Link to={`/drivers/${driver.driverId}`}>
+                  <Link to={`/drivers/${driver.driverId}`} key={driver.driverId}>
                     <Typography>{`${driver.givenName} ${driver.familyName}`}</Typography>
                   </Link>
                 ))}

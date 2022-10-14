@@ -8,12 +8,11 @@ function TeamDrivers({ team }) {
 
   if (teamDriversQuery.isSuccess) {
     let drivers = teamDriversQuery.data.data.MRData.DriverTable.Drivers;
-    // console.log(drivers);
     return (
       <div className="m-8">
         {drivers.map((driver) => {
           return (
-            <Link to={`/drivers/${driver.driverId}`}>
+            <Link to={`/drivers/${driver.driverId}`} key={driver.driverId}>
               <Typography className="my-auto text-center">
                 {driver.givenName + ' ' + driver.familyName}
               </Typography>
