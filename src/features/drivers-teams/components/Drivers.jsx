@@ -2,6 +2,7 @@ import React from 'react';
 import { useDriverRankings } from '../../rankings/api/getDriverRankings';
 import Divider from '@mui/material/Divider';
 import { Typography } from '@mui/material';
+import DriverCard from './DriverCard';
 
 function Drivers() {
   const driversQuery = useDriverRankings(2022);
@@ -11,17 +12,9 @@ function Drivers() {
     console.log(drivers);
 
     return (
-      <div className="grid grid-cols-4 gap-4 mx-auto w-4/5 mt-36">
+      <div className="grid grid-cols-3 gap-4 mx-auto w-4/5 mt-36 justify-items-center">
         {drivers.map((driver) => (
-          <div className="w-56 h-56 border-solid border-r border-t border-b-0 border-l-0">
-            <div className='flex'>
-              <Typography>{driver.position} "</Typography>
-              <Typography className='float-right'>{driver.points}</Typography>
-              {/* TODO: Photo here */}
-            </div>
-            <Divider />
-            <Typography>{driver.Driver.givenName}</Typography>
-          </div>
+          <DriverCard driver={driver} />
         ))}
       </div>
     );
