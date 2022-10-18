@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useCallback } from 'react';
 import { useRaces } from '../api/getRaces';
 import GenericTable from '../../../components/Table/GenericTable';
 import IconButton from '@mui/material/IconButton';
@@ -15,47 +15,54 @@ import SeasonContext from '../../../context/SeasonContext';
 
 const lookup = require('coordinate_to_country');
 
-const RaceRow = ({ race }) => {
-  const [open, setOpen] = useState(false);
+const RaceRow = ({ race, latest, passed }) => {
+  const [open, setOpen] = useState(latest);
+
+  const latestRaceRef = useCallback((node) => {
+    if (node !== null) {
+      console.log('ref', node);
+      node.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, []);
 
   let sessions = [];
 
-  if (race.FirstPractice !== undefined) {
+  if (race.FirstPractice) {
     sessions.push({
       name: 'First Practice',
       date: race.FirstPractice.date,
       time: race.FirstPractice.time,
     });
   }
-  if (race.SecondPractice !== undefined) {
+  if (race.SecondPractice) {
     sessions.push({
       name: 'Second Practice',
       date: race.SecondPractice.date,
       time: race.SecondPractice.time,
     });
   }
-  if (race.ThirdPractice !== undefined) {
+  if (race.ThirdPractice) {
     sessions.push({
       name: 'Third Practice',
       date: race.ThirdPractice.date,
       time: race.ThirdPractice.time,
     });
   }
-  if (race.Qualifying !== undefined) {
+  if (race.Qualifying) {
     sessions.push({
       name: 'Qualifying',
       date: race.Qualifying.date,
       time: race.Qualifying.time,
     });
   }
-  if (race.Sprint !== undefined) {
+  if (race.Sprint) {
     sessions.push({
       name: 'Sprint',
       date: race.Sprint.date,
       time: race.Sprint.time,
     });
   }
-  if (race !== undefined) {
+  if (race) {
     sessions.push({
       name: 'Race',
       date: race.date,
@@ -63,31 +70,24 @@ const RaceRow = ({ race }) => {
     });
   }
 
-  sessions.sort((a, b) => {
-    const first = a.date + a.time;
-    const second = b.date + b.time;
+  sessions.sort();
 
-    return first.localeCompare(second);
-  });
-
-  const sessionsRows = sessions.map((session) => {
-    return (
-      <TableRow>
-        <TableCell></TableCell>
-        <TableCell>{session.name}</TableCell>
-        <TableCell>
-          {convertDate(session.date).toLocaleString('default', {
-            day: 'numeric',
-            month: 'long',
-            weekday: 'long',
-          })}
-        </TableCell>
-        <TableCell>
-          {convertTimeZone(session.time)[0] + '.' + convertTimeZone(session.time)[1]}
-        </TableCell>
-      </TableRow>
-    );
-  });
+  const sessionsRows = sessions.map((session) => (
+    <TableRow>
+      <TableCell></TableCell>
+      <TableCell>{session.name}</TableCell>
+      <TableCell>
+        {convertDate(session.date).toLocaleString('default', {
+          day: 'numeric',
+          month: 'long',
+          weekday: 'long',
+        })}
+      </TableCell>
+      <TableCell>
+        {convertTimeZone(session.time)[0] + '.' + convertTimeZone(session.time)[1]}
+      </TableCell>
+    </TableRow>
+  ));
 
   return (
     <>
@@ -98,7 +98,7 @@ const RaceRow = ({ race }) => {
           </IconButton>
         </TableCell>
         <TableCell>
-          <div className="flex my-auto">
+          <div className="flex my-auto" ref={latest ? latestRaceRef : undefined}>
             <img
               className="m-4"
               src={`https://countryflagsapi.com/png/${lookup(
@@ -135,11 +135,26 @@ export const Races = () => {
   if (racesQuery.isSuccess) {
     const rows = racesQuery.data.data.MRData.RaceTable.Races;
 
+    //User is viewing current seasons page.
+    if (year === new Date().getFullYear()) {
+      let latest = 0;
+
+      for (let i = 0; i < rows.length; i++) {
+        rows[i].passed = true;
+        if (new Date() < new Date(rows[i].date)) {
+          latest = i;
+          break;
+        }
+      }
+      console.log(rows[latest]);
+      rows[latest].latest = true;
+    }
+
     let columns = ['Grand Prix', 'Date'];
     let raceRows = (
       <>
         {rows.map((race) => {
-          return <RaceRow race={race}></RaceRow>;
+          return <RaceRow race={race} latest={race.latest} passed={race.passed}></RaceRow>;
         })}
       </>
     );
