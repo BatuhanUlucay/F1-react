@@ -10,7 +10,7 @@ function Drivers() {
     console.log(drivers);
 
     return (
-      <div className="grid grid-cols-3 gap-4 mx-auto w-4/5 mt-36 justify-items-center">
+      <div className="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-4 mx-auto w-4/5 mt-36 justify-items-center">
         {drivers.map((driver) => (
           <DriverCard driver={driver} />
         ))}
