@@ -7,10 +7,9 @@ function DateCard({ date }) {
   const year = date.getFullYear();
 
   return (
-    <div className="expense-date">
-      <div className="expense-date__month">{month}</div>
-      {/* <div className="expense-date__year">{year}</div> */}
-      <div className="expense-date__day">{day}</div>
+    <div className="date">
+      <div className="date__month">{month}</div>
+      <div className="date__day">{day}</div>
     </div>
   );
 }

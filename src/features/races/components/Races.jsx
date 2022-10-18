@@ -20,7 +20,6 @@ const RaceRow = ({ race, latest, passed }) => {
 
   const latestRaceRef = useCallback((node) => {
     if (node !== null) {
-      console.log('ref', node);
       node.scrollIntoView({ behavior: 'smooth' });
     }
   }, []);
@@ -98,7 +97,7 @@ const RaceRow = ({ race, latest, passed }) => {
           </IconButton>
         </TableCell>
         <TableCell>
-          <div className="flex my-auto" ref={latest ? latestRaceRef : undefined}>
+          <div className="md:flex relative" ref={latest ? latestRaceRef : undefined}>
             <img
               className="m-4"
               src={`https://countryflagsapi.com/png/${lookup(
@@ -110,9 +109,10 @@ const RaceRow = ({ race, latest, passed }) => {
               height={40}
               width={60}
             />
-            <div>
+            <div className="my-auto">
               <Typography>{race.raceName}</Typography>
               <Typography className="text-xs">{race.Circuit.circuitName}</Typography>
+              {passed && <Typography className="absolute right-8 md:top-6 top-12">Results</Typography>}
             </div>
           </div>
         </TableCell>
@@ -140,14 +140,14 @@ export const Races = () => {
       let latest = 0;
 
       for (let i = 0; i < rows.length; i++) {
-        rows[i].passed = true;
         if (new Date() < new Date(rows[i].date)) {
           latest = i;
           break;
         }
+        rows[i].passed = true;
       }
-      console.log(rows[latest]);
       rows[latest].latest = true;
+      console.log(rows[latest]);
     }
 
     let columns = ['Grand Prix', 'Date'];
