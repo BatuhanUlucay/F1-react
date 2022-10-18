@@ -23,16 +23,18 @@ function DriverCard({ driver }) {
     if (photo === '') setPhoto(profilePic.join('/'));
 
     return (
-      <div className="w-80 h-80 border-solid border-r border-t border-b-0 border-l-0">
+      <div className="w-96 h-96 border-solid border-r border-t border-b-0 border-l-0">
         <div className="flex w-full relative">
           <Typography variant="h4">{driver.position}</Typography>
           <Typography className="absolute right-1 my-2">{driver.points} points</Typography>
         </div>
         <Divider />
+        <div className="w-full h-auto grid grid-cols-2 my-8">
+          <img alt="Driver" src={photo} className="w-full h-full object-fit" />
+          <div>
             <Typography>{`${driver.Driver.givenName} ${driver.Driver.familyName}`}</Typography>
             <Typography>{`${driver.Constructors[0].name}`}</Typography>
-        <div className="h-1/2 w-1/2">
-          <img alt="Driver" src={photo} width={150} className="float-right mr-5 my-auto object-cover" />
+          </div>
         </div>
       </div>
     );

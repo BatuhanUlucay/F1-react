@@ -1,7 +1,5 @@
 import React from 'react';
 import { useDriverRankings } from '../../rankings/api/getDriverRankings';
-import Divider from '@mui/material/Divider';
-import { Typography } from '@mui/material';
 import DriverCard from './DriverCard';
 
 function Drivers() {
