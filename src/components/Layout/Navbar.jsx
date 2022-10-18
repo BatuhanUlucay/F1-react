@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Box from '@mui/material/Box';
-// import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -10,8 +9,8 @@ import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { Link } from 'react-router-dom';
-import DriversDropdown from '../../features/drivers-teams/components/DriversDropdown';
-import TeamsDropdown from '../../features/drivers-teams/components/TeamsDropdown';
+import DriversDropdown from '../../features/drivers/components/DriversDropdown';
+import TeamsDropdown from '../../features/teams/components/TeamsDropdown';
 
 const pages = ['Schedule', 'Standings', 'Drivers', 'Teams'];
 

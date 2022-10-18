@@ -3,10 +3,10 @@ import Landing from '../components/Layout/Landing';
 import PersistentDrawerLeft from '../components/Layout/Navbar';
 import { Races } from '../features/races/components/Races';
 import Standings from '../features/rankings/components/Standings';
-import Teams from '../features/drivers-teams/components/Teams';
-import TeamDetail from '../features/drivers-teams/components/TeamDetail';
-import DriverDetail from '../features/drivers-teams/components/DriverDetail';
-import Drivers from '../features/drivers-teams/components/Drivers';
+import Teams from '../features/teams/components/Teams';
+import TeamDetail from '../features/teams/components/TeamDetail';
+import DriverDetail from '../features/drivers/components/DriverDetail';
+import Drivers from '../features/drivers/components/Drivers';
 
 const AppRoutes = () => {
   const commonRoutes = [
