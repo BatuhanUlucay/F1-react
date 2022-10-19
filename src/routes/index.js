@@ -7,6 +7,7 @@ import Teams from '../features/teams/components/Teams';
 import TeamDetail from '../features/teams/components/TeamDetail';
 import DriverDetail from '../features/drivers/components/DriverDetail';
 import Drivers from '../features/drivers/components/Drivers';
+import RaceResult from '../features/races/components/RaceResult';
 
 const AppRoutes = () => {
   const commonRoutes = [
@@ -17,6 +18,7 @@ const AppRoutes = () => {
     { path: 'teams/:teamId', element: <TeamDetail /> },
     { path: 'drivers', element: <Drivers /> },
     { path: 'drivers/:driverId', element: <DriverDetail /> },
+    { path: 'results/:season/:round', element: <RaceResult /> },
   ];
 
   const element = useRoutes([...commonRoutes]);

@@ -12,6 +12,7 @@ import DateCard from '../../../components/Date/DateCard';
 import { convertDate, convertTimeZone } from '../../../util/DateConverter';
 import SeasonFilter from '../../../components/Select/SeasonFilter';
 import SeasonContext from '../../../context/SeasonContext';
+import { Link } from 'react-router-dom';
 
 const lookup = require('coordinate_to_country');
 
@@ -113,7 +114,9 @@ const RaceRow = ({ race, latest, passed }) => {
               <Typography>{race.raceName}</Typography>
               <Typography className="text-xs">{race.Circuit.circuitName}</Typography>
               {passed && (
-                <Typography className="absolute right-4 md:top-6 top-12">Results</Typography>
+                <Link to={`/results/${race.season}/${race.round}`}>
+                  <Typography className="absolute right-4 md:top-6 top-12">Results</Typography>
+                </Link>
               )}
             </div>
           </div>
@@ -149,7 +152,6 @@ export const Races = () => {
         rows[i].passed = true;
       }
       rows[latest].latest = true;
-      console.log(rows[latest]);
     }
 
     let columns = ['Grand Prix', 'Date'];
