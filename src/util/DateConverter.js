@@ -5,7 +5,7 @@ export const convertDate = (dateString) => {
 };
 
 export const convertTimeZone = (timeString) => {
-  if (timeString === undefined) {
+  if (!timeString) {
     return ['', ''];
   }
 
@@ -14,8 +14,8 @@ export const convertTimeZone = (timeString) => {
   // eslint-disable-next-line no-unused-vars
   let [hours, minutes, second] = timeString.split(':');
 
-  if (+hours + timeZone < 10) {
-    hours = '0' + (+hours + timeZone);
+  if ((+hours + timeZone) % 24 < 10) {
+    hours = '0' + (+hours + timeZone) % 24;
   } else {
     hours = +hours + timeZone;
   }

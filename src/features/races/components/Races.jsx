@@ -112,7 +112,9 @@ const RaceRow = ({ race, latest, passed }) => {
             <div className="my-auto">
               <Typography>{race.raceName}</Typography>
               <Typography className="text-xs">{race.Circuit.circuitName}</Typography>
-              {passed && <Typography className="absolute right-8 md:top-6 top-12">Results</Typography>}
+              {passed && (
+                <Typography className="absolute right-4 md:top-6 top-12">Results</Typography>
+              )}
             </div>
           </div>
         </TableCell>
