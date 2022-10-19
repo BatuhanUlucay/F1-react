@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useRaceResult } from '../api/getRaceResult';
 import GenericTable from '../../../components/Table/GenericTable';
-import { TableRow, TableCell, Tab } from '@mui/material';
+import { TableRow, TableCell } from '@mui/material';
 
 function RaceResult() {
   const { season, round } = useParams();
