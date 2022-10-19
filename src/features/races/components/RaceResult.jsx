@@ -2,14 +2,14 @@ import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useRaceResult } from '../api/getRaceResult';
 import GenericTable from '../../../components/Table/GenericTable';
-import { TableRow, TableCell } from '@mui/material';
+import { TableRow, TableCell, Tab } from '@mui/material';
 
 function RaceResult() {
   const { season, round } = useParams();
 
   const raceResultQuery = useRaceResult(season, round);
 
-  const columns = ['Position', 'Driver', 'Time', 'Points'];
+  const columns = ['Position', 'Driver', 'Time', 'Status', 'Points'];
 
   if (raceResultQuery.isSuccess) {
     const raceResult = raceResultQuery.data.data.MRData.RaceTable.Races[0].Results;
@@ -25,7 +25,8 @@ function RaceResult() {
             {`${row.Driver.givenName} ${row.Driver.familyName}`}
           </Link>
         </TableCell>
-        <TableCell>{row.status === 'Finished' ? row.Time.time : row.status}</TableCell>
+        <TableCell>{row.status === 'Finished' ? row.Time.time : 'DNF'}</TableCell>
+        <TableCell>{row.status}</TableCell>
         <TableCell>{row.points}</TableCell>
         <TableCell>{row.FastestLap?.rank === '1' ? 'F' : ''}</TableCell>
       </TableRow>
