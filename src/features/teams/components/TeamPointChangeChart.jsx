@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { useLastRace } from '../../races/api/getLastRace';
 import { useTeamPointChange } from '../api/getTeamPointChange';
 import Plot from 'react-plotly.js';
-import { Typography } from '@mui/material';
 
 function TeamPointChangeChart() {
   //FIXME: refactor here and the driver side asap.
+  //TODO: use grand prix as x axis.
 
   const [lastRound, setLastRound] = useState(0);
   const lastRaceQuery = useLastRace();
@@ -57,7 +57,14 @@ function TeamPointChangeChart() {
       x.push(team.points[j][0]);
       y.push(team.points[j][1]);
     }
-    data3.push({ x: x, y: y, type: 'scatter', mode: 'lines', name: team.code });
+    data3.push({
+      x: x,
+      y: y,
+      type: 'scatter',
+      mode: 'lines',
+      name: team.code,
+      visible: 'legendonly',
+    });
   }
 
   console.log(data3);
@@ -66,11 +73,8 @@ function TeamPointChangeChart() {
     <div>
       <Plot
         data={data3}
-        layout={{ width: 800, height: 800, hovermode: 'x', legend: { itemclick: 'false' } }}
+        layout={{ width: 800, height: 800, hovermode: 'x', legend: { itemclick: 'toggle' } }}
       />
-      <Typography>
-        You can select a team by double clicking and try to compare with others.
-      </Typography>
     </div>
   );
 }

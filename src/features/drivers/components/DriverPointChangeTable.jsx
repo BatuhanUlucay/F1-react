@@ -3,12 +3,13 @@ import { useState } from 'react';
 import { useLastRace } from '../../races/api/getLastRace';
 import { useDriverPointChange } from '../api/getDriverPointChange';
 import Plot from 'react-plotly.js';
-import { Typography } from '@mui/material';
 
 function DriverPointChangeTable() {
   const [lastRound, setLastRound] = useState(0);
   const lastRaceQuery = useLastRace();
-  const pointChangeQuery = useDriverPointChange(new Date().getFullYear(), lastRound, { enabled: !!lastRound });
+  const pointChangeQuery = useDriverPointChange(new Date().getFullYear(), lastRound, {
+    enabled: !!lastRound,
+  });
 
   let data = [];
   let data2 = {};
@@ -54,7 +55,14 @@ function DriverPointChangeTable() {
       x.push(driver.points[j][0]);
       y.push(driver.points[j][1]);
     }
-    data3.push({ x: x, y: y, type: 'scatter', mode: 'lines', name: driver.code });
+    data3.push({
+      x: x,
+      y: y,
+      type: 'scatter',
+      mode: 'lines',
+      name: driver.code,
+      visible: 'legendonly',
+    });
   }
 
   console.log(data3);
@@ -63,11 +71,8 @@ function DriverPointChangeTable() {
     <div>
       <Plot
         data={data3}
-        layout={{ width: 800, height: 800, hovermode: 'x', legend: { itemclick: 'false' } }}
+        layout={{ width: 800, height: 800, hovermode: 'x', legend: { itemclick: 'toggle' } }}
       />
-      <Typography>
-        You can select a driver by double clicking and try to compare with others.
-      </Typography>
     </div>
   );
 }
