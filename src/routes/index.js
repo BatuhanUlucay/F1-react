@@ -12,7 +12,7 @@ import RaceResult from '../features/races/components/RaceResult';
 const AppRoutes = () => {
   const commonRoutes = [
     { path: '/', element: <Landing /> },
-    { path: 'schedule', element: <Races /> },
+    { path: 'races', element: <Races /> },
     { path: 'standings', element: <Standings /> },
     { path: 'teams', element: <Teams /> },
     { path: 'teams/:teamId', element: <TeamDetail /> },

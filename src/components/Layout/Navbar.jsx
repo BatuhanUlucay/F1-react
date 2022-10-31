@@ -12,7 +12,7 @@ import { Link } from 'react-router-dom';
 import DriversDropdown from '../../features/drivers/components/DriversDropdown';
 import TeamsDropdown from '../../features/teams/components/TeamsDropdown';
 
-const pages = ['Schedule', 'Standings', 'Drivers', 'Teams'];
+const pages = ['Races', 'Standings', 'Drivers', 'Teams'];
 
 function Navbar() {
   const [anchorElNav, setAnchorElNav] = useState(null);

@@ -6,7 +6,7 @@ import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import { Typography } from '@mui/material';
+import { TableBody, Typography } from '@mui/material';
 import CollapsibleTable from '../../../components/Table/CollapsibleTable';
 import DateCard from '../../../components/Date/DateCard';
 import { convertDate, convertTimeZone } from '../../../util/DateConverter';
@@ -74,7 +74,7 @@ const RaceRow = ({ race, latest, passed }) => {
 
   const sessionsRows = sessions.map((session) => (
     <TableRow>
-      <TableCell></TableCell>
+      {/* <TableCell></TableCell> */}
       <TableCell>{session.name}</TableCell>
       <TableCell>
         {convertDate(session.date).toLocaleString('default', {
@@ -91,7 +91,7 @@ const RaceRow = ({ race, latest, passed }) => {
 
   return (
     <>
-      <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
+      <TableRow>
         <TableCell>
           <IconButton size="small" onClick={() => setOpen(!open)}>
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
@@ -100,7 +100,7 @@ const RaceRow = ({ race, latest, passed }) => {
         <TableCell>
           <div className="md:flex relative" ref={latest ? latestRaceRef : undefined}>
             <img
-              className="m-4"
+              className="m-4 border border-solid"
               src={`https://countryflagsapi.com/png/${lookup(
                 +race.Circuit.Location.lat,
                 +race.Circuit.Location.long,
@@ -152,6 +152,10 @@ export const Races = () => {
         rows[i].passed = true;
       }
       rows[latest].latest = true;
+    } else if (year < new Date().getFullYear()) {
+      for (let i = 0; i < rows.length; i++) {
+        rows[i].passed = true;
+      }
     }
 
     let columns = ['Grand Prix', 'Date'];
