@@ -12,6 +12,7 @@ import { useTeamDrivers } from '../api/getTeamDrivers';
 import { useTeamStats } from '../api/getTeamStats';
 import { Link } from 'react-router-dom';
 import { calculateTeamStats } from '../../../util/calculateTeamStats';
+import ImageIcon from '@mui/icons-material/Image';
 
 function TeamDetail() {
   const [imgSource, setImgSource] = useState('');
@@ -36,9 +37,9 @@ function TeamDetail() {
       const wikiInfobox = infoboxQuery.data.infobox();
       if (imgSource === '') getLogoUrlFromInfobox(wikiInfobox, setImgSource);
 
-      const info = parseTeamInfo(wikiInfobox.data);
+      const info = parseTeamInfo(wikiInfobox?.data);
 
-      const drivers = teamDriversQuery.data.data.MRData.DriverTable.Drivers;
+      const drivers = teamDriversQuery.data.data?.MRData?.DriverTable?.Drivers;
 
       const championships = calculateTeamStats(
         teamStatsQuery.data.data.MRData.StandingsTable.StandingsLists
@@ -47,7 +48,11 @@ function TeamDetail() {
       return (
         <Card className="lg:w-2/3 mx-auto mt-24">
           <div className=" w-1/3 mx-auto my-auto">
-            <CardMedia component="img" alt="TeamLogo" image={imgSource} />
+            {imgSource === '' ? (
+              <ImageIcon className="w-full h-full m-auto block" />
+            ) : (
+              <CardMedia component="img" alt="TeamLogo" image={imgSource} />
+            )}
           </div>
           <CardContent className="mx-auto w-2/3">
             <div className="grid grid-cols-2 mt-16 w-2/3 mx-auto">

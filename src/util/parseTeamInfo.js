@@ -1,6 +1,8 @@
 export function parseTeamInfo(infobox) {
   let allFields = {};
 
+  if (!infobox) return allFields;
+
   let keys = Object.keys(infobox);
 
   // This is really really bad solution but because of unstable wikipedia data, I have to do this..
