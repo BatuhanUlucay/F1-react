@@ -14,8 +14,6 @@ function RaceResult() {
   if (raceResultQuery.isSuccess) {
     const raceResult = raceResultQuery.data.data.MRData.RaceTable.Races[0].Results;
 
-    //TODO: Add a fastest lap icon instead of just writing "F"
-
     const resultRows = raceResult.map((row) => (
       <TableRow>
         <TableCell />
@@ -25,14 +23,24 @@ function RaceResult() {
             {`${row.Driver.givenName} ${row.Driver.familyName}`}
           </Link>
         </TableCell>
-        <TableCell>{row.status === 'Finished' ? row.Time.time : 'DNF'}</TableCell>
+        <TableCell>
+          {row.status === 'Finished' || row.status.includes('Lap')
+            ? row.Time?.time
+              ? row.Time.time
+              : 'No Time'
+            : 'DNF'}
+        </TableCell>
         <TableCell>{row.status}</TableCell>
         <TableCell>{row.points}</TableCell>
         <TableCell>{row.FastestLap?.rank === '1' ? 'F' : ''}</TableCell>
       </TableRow>
     ));
 
-    return <GenericTable columns={columns} rows={resultRows} />;
+    return (
+      <div className="mt-32">
+        <GenericTable columns={columns} rows={resultRows} />;
+      </div>
+    );
   }
 }
 
