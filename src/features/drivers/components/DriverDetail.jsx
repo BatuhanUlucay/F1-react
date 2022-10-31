@@ -10,6 +10,7 @@ import { useDriverStats } from '../api/getDriversStats';
 import { calculateDriverChamps, calculateDriverStats } from '../../../util/calculateDriverStats';
 import { useDriverChamps } from '../api/getDriverChamps';
 import { Link } from 'react-router-dom';
+import ImageIcon from '@mui/icons-material/Image';
 
 function DriverDetail() {
   const [wikiTitle, setWikiTitle] = useState('');
@@ -66,7 +67,9 @@ function DriverDetail() {
           </Typography>
           <div className="grid grid-cols-2 mt-16">
             <Typography className="font-bold text-2xl mt-4">Nationality</Typography>
-            <Typography className="font-medium text-md mt-4">{driverDetails.nationality}</Typography>
+            <Typography className="font-medium text-md mt-4">
+              {driverDetails.nationality}
+            </Typography>
             <Typography className="font-bold text-2xl mt-4">Age</Typography>
             <Typography className="font-medium text-md mt-4">
               {new Date().getFullYear() - driverDetails.dateOfBirth.split('-')[0]}

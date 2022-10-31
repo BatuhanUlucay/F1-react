@@ -24,7 +24,7 @@ function TeamsDropdown() {
         <div className="grid grid-rows-3 grid-flow-col justify-around">
           {teams.map((team) => {
             return (
-              <Link to={`teams/${team.Constructor.constructorId}`} reloadDocument>
+              <Link to={`teams/${team.Constructor.constructorId}`} reloadDocument className="no-underline text-inherit">
                 <div
                   className={`h-8 w-56 border-solid border-r border-b border-t-0 border-l-0 rounded-sm ${
                     team.Constructor.name === hovered

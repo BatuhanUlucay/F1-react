@@ -1,6 +1,9 @@
 import { hashMessage } from './md5hash';
 
 export function getLogoUrlFromInfobox(teamInfobox, setterFunc) {
+  if (!teamInfobox) {
+    return '';
+  }
   if (teamInfobox.data.logo !== undefined) {
     const logoFileName = teamInfobox.data.logo.data.text;
 

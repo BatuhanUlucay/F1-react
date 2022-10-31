@@ -10,7 +10,6 @@ const DriverRow = ({ driver }) => {
   return (
     <TableRow>
       <TableCell />
-
       <TableCell>{driver.position}</TableCell>
       <TableCell>
         <Link to={`/drivers/${driver.Driver.driverId}`} className="no-underline text-inherit">
