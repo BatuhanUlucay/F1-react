@@ -4,13 +4,21 @@ import GenericTable from '../../../components/Table/GenericTable';
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
 import { useTeamRankings } from '../api/getTeamRankings';
+import { Link } from 'react-router-dom';
 
 const ConstructorRow = ({ constructor }) => {
   return (
     <TableRow>
       <TableCell />
       <TableCell>{constructor.position}</TableCell>
-      <TableCell>{constructor.Constructor.name}</TableCell>
+      <TableCell>
+        <Link
+          to={`/teams/${constructor.Constructor.constructorId}`}
+          className="no-underline text-inherit"
+        >
+          {constructor.Constructor.name}
+        </Link>
+      </TableCell>
       <TableCell>{constructor.points}</TableCell>
     </TableRow>
   );

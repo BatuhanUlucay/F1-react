@@ -4,13 +4,19 @@ import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
 import SeasonContext from '../../../context/SeasonContext';
 import { useDriverRankings } from '../api/getDriverRankings';
+import { Link } from 'react-router-dom';
 
 const DriverRow = ({ driver }) => {
   return (
     <TableRow>
       <TableCell />
+
       <TableCell>{driver.position}</TableCell>
-      <TableCell>{driver.Driver.givenName + ' ' + driver.Driver.familyName}</TableCell>
+      <TableCell>
+        <Link to={`/drivers/${driver.Driver.driverId}`} className="no-underline text-inherit">
+          {driver.Driver.givenName + ' ' + driver.Driver.familyName}
+        </Link>
+      </TableCell>
       <TableCell>{driver.points}</TableCell>
     </TableRow>
   );
