@@ -50,7 +50,7 @@ function NextRace() {
     );
 
     return (
-      <Card className="max-w-lg mx-auto">
+      <Card className="max-w-lg mx-auto mt-32">
         <Typography variant="h2" component="div" sx={{ textAlign: 'center', marginBottom: '1rem' }}>
           Next Race
         </Typography>
@@ -62,10 +62,13 @@ function NextRace() {
               true
             )}`}
             alt="Flag"
-            height={40}
+            height={80}
           />
           <Typography variant="h5" component="div">
             {nextRaceName}
+          </Typography>
+          <Typography variant='h7'>
+            {nextRaceCircuit.circuitName}
           </Typography>
         </div>
         <NextRaceCountdown nextDate={nextRaceDateFormatted} lastDate={lastRaceDateFormatted} />

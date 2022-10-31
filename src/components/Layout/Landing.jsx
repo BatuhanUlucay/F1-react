@@ -7,11 +7,12 @@ import TeamPointChangeChart from '../../features/teams/components/TeamPointChang
 const Landing = () => {
   return (
     <>
-      {
-        <NextRace />
-        /* <Timeline /> */
-      }
-      <div className="flex">
+      <Timeline />
+      <NextRace />
+      <div className="justify-center mt-16 hidden xl:flex">
+        <h2>Points chart race by race</h2>
+      </div>
+      <div className="justify-center hidden xl:flex">
         <DriverPointChangeTable />
         <TeamPointChangeChart />
       </div>
