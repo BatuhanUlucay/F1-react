@@ -11,12 +11,13 @@ import { calculateDriverChamps, calculateDriverStats } from '../../../util/calcu
 import { useDriverChamps } from '../api/getDriverChamps';
 import { Link } from 'react-router-dom';
 import ImageIcon from '@mui/icons-material/Image';
+import { parsePhotoFromWiki } from '../../../util/parsePhotoFromWiki';
 
 function DriverDetail() {
   const [wikiTitle, setWikiTitle] = useState('');
-  const [profilePhoto, setProfilePhoto] = useState('');
+  const [profilePhoto, setProfilePhoto] = useState(null);
   const [stats, setStats] = useState();
-  const [champs, setChamps] = useState(0);
+  const [champs, setChamps] = useState(null);
 
   const driverId = useParams().driverId;
   const driverDetailsQuery = useDriverDetails(driverId);
@@ -32,34 +33,31 @@ function DriverDetail() {
       setWikiTitle(decodeURI(wikiUrl).split('/').pop());
     }
 
-    if (
-      driverPhotoQuery.isSuccess &&
-      profilePhoto === '' &&
-      driverStatsQuery.isSuccess &&
-      driverChampsQuery.isSuccess
-    ) {
-      const profilePic = driverPhotoQuery.data.data.query.pages[
-        Object.keys(driverPhotoQuery.data.data.query.pages)
-      ].thumbnail.source
-        .replaceAll('thumb/', '')
-        .split('/');
+    if (driverPhotoQuery.isSuccess && driverStatsQuery.isSuccess && driverChampsQuery.isSuccess) {
+      const pp =
+        driverPhotoQuery.data.data.query.pages[Object.keys(driverPhotoQuery.data.data.query.pages)]
+          .thumbnail?.source;
+
+      const photoSrc = parsePhotoFromWiki(pp);
+
+      if (profilePhoto === null) setProfilePhoto(photoSrc);
 
       const driverAllRaces = driverStatsQuery.data.data.MRData.RaceTable.Races;
-
-      profilePic.pop();
-
-      setProfilePhoto(profilePic.join('/'));
 
       if (!stats) setStats(calculateDriverStats(driverAllRaces));
 
       const allSeasons = driverChampsQuery.data.data.MRData.StandingsTable.StandingsLists;
-      setChamps(calculateDriverChamps(allSeasons));
+      if (champs === null) setChamps(calculateDriverChamps(allSeasons));
     }
 
     return (
       <Card className="lg:w-2/3 mx-auto lg:flex mt-24">
         <div className="md:w-1/3 w-2/3 mx-auto">
-          <CardMedia component="img" alt="DriverPhoto" image={profilePhoto} />
+          {profilePhoto === '' ? (
+            <ImageIcon className="w-full h-full m-auto block" />
+          ) : (
+            <CardMedia component="img" alt="DriverPhoto" image={profilePhoto} />
+          )}
         </div>
         <CardContent className="mx-auto md:w-1/2 w-full">
           <Typography variant="h2" component="div" className="mb-8 text-center">

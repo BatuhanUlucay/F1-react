@@ -15,15 +15,15 @@ function DriverCard({ driver }) {
     setWikiTitle(decodeURI(wikiUrl).split('/').pop());
 
     if (driverPhotoQuery.isSuccess) {
-      const profilePic = driverPhotoQuery.data.data.query.pages[
-        Object.keys(driverPhotoQuery.data.data.query.pages)
-      ].thumbnail.source
-        .replaceAll('thumb/', '')
-        .split('/');
+      let profilePic =
+        driverPhotoQuery.data.data.query.pages[Object.keys(driverPhotoQuery.data.data.query.pages)]
+          .thumbnail?.source;
 
-      profilePic.pop();
-
-      setPhoto(profilePic.join('/'));
+      if (profilePic) {
+        profilePic = profilePic.replaceAll('thumb/', '').split('/');
+        profilePic.pop();
+        setPhoto(profilePic.join('/'));
+      }
     }
   }, [driver.Driver.url, driverPhotoQuery]);
 
