@@ -35,7 +35,7 @@ function SeasonFilter() {
   const filterSize = thisYear - 1950;
   const yearArray = Array(filterSize)
     .fill(0)
-    .map((e, i) => i + 1950 + '');
+    .map((e, i) => i + 1960 + '');
 
   yearArray.push(thisYear);
   yearArray.reverse();

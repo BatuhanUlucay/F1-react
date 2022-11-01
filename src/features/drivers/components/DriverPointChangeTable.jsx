@@ -30,8 +30,6 @@ function DriverPointChangeTable() {
     return a.round - b.round;
   });
 
-  // console.log(data);
-
   for (let result of data) {
     const r = result.round;
     for (let res2 of result.DriverStandings) {
@@ -42,8 +40,6 @@ function DriverPointChangeTable() {
       }
     }
   }
-
-  console.log(data2);
 
   let data3 = [];
 
@@ -64,8 +60,6 @@ function DriverPointChangeTable() {
       visible: 'legendonly',
     });
   }
-
-  console.log(data3);
 
   return (
     <div>

@@ -45,8 +45,6 @@ function TeamPointChangeChart() {
     }
   }
 
-  console.log(data2);
-
   let data3 = [];
 
   for (let i = 0; i < Object.keys(data2).length; i++) {
@@ -66,8 +64,6 @@ function TeamPointChangeChart() {
       visible: 'legendonly',
     });
   }
-
-  console.log(data3);
 
   return (
     <div>

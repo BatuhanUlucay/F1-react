@@ -11,7 +11,6 @@ function DriverCard({ driver }) {
   const driverPhotoQuery = useDriverPhoto(wikiTitle, { enabled: !!wikiTitle });
   useEffect(() => {
     const wikiUrl = driver.Driver.url;
-    console.log(wikiUrl);
     setWikiTitle(decodeURI(wikiUrl).split('/').pop());
 
     if (driverPhotoQuery.isSuccess) {
