@@ -28,7 +28,7 @@ function DriverCard({ driver }) {
 
   return (
     <Link to={`/drivers/${driver.Driver.driverId}`} className="no-underline text-black">
-      <div className="w-96 h-96 border-solid border-r border-t border-b-0 border-l-0 my-10 rounded-xl shadow-2xl">
+      <div className="w-96 h-96 border-solid border my-10 rounded-xl shadow-2xl">
         <div className="flex w-full relative">
           <Typography variant="h4">{driver.position}</Typography>
           <Typography className="absolute right-1 my-2">{driver.points} points</Typography>
