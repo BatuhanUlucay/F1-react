@@ -99,6 +99,7 @@ function Navbar() {
               component="a"
               href=""
               sx={{
+                mt: 2,
                 mr: 2,
                 display: { xs: 'flex', md: 'none' },
                 flexGrow: 1,
