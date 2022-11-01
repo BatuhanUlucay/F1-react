@@ -9,7 +9,7 @@ const Landing = () => {
     <>
       <Timeline />
       <NextRace />
-      <div className="justify-center mt-16 hidden xl:flex">
+      <div className="justify-center mt-20 hidden xl:flex">
         <h2>Points chart race by race</h2>
       </div>
       <div className="justify-center hidden xl:flex">

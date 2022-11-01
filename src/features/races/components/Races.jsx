@@ -6,7 +6,7 @@ import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import { TableBody, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 import CollapsibleTable from '../../../components/Table/CollapsibleTable';
 import DateCard from '../../../components/Date/DateCard';
 import { convertDate, convertTimeZone } from '../../../util/DateConverter';
