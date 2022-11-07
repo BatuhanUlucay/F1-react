@@ -9,6 +9,5 @@ export const useTeams = (season) => {
   return useQuery({
     queryKey: ['teams', season],
     queryFn: () => getTeams(season),
-    // ...config,
   });
 };

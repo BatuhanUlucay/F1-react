@@ -32,10 +32,10 @@ function SeasonFilter() {
   const theme = useTheme();
 
   const thisYear = new Date().getFullYear();
-  const filterSize = thisYear - 1960;
+  const filterSize = thisYear - 1950;
   const yearArray = Array(filterSize)
     .fill(0)
-    .map((e, i) => i + 1960 + '');
+    .map((e, i) => i + 1950 + '');
 
   yearArray.push(thisYear);
   yearArray.reverse();

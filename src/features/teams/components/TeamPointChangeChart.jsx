@@ -4,8 +4,6 @@ import { useTeamPointChange } from '../api/getTeamPointChange';
 import Plot from 'react-plotly.js';
 
 function TeamPointChangeChart() {
-  //FIXME: refactor here and the driver side asap.
-  //TODO: use grand prix as x axis.
 
   const [lastRound, setLastRound] = useState(0);
   const lastRaceQuery = useLastRace();
@@ -13,8 +11,8 @@ function TeamPointChangeChart() {
     enabled: !!lastRound,
   });
 
-  let data = [];
-  let data2 = {};
+  let standingArray = [];
+  let standingMap = {};
 
   if (lastRaceQuery.isSuccess && !lastRound) {
     const lastRace = lastRaceQuery.data.data.MRData.RaceTable.round;
@@ -23,39 +21,37 @@ function TeamPointChangeChart() {
 
   for (const session of pointChangeQuery) {
     if (session.isSuccess) {
-      const tmp = session.data.data.MRData.StandingsTable.StandingsLists[0];
-      data.push(tmp);
+      const standingList = session.data.data.MRData.StandingsTable.StandingsLists[0];
+      standingArray.push(standingList);
     }
   }
 
-  data.sort((a, b) => {
+  standingArray.sort((a, b) => {
     return a.round - b.round;
   });
 
-  // console.log(data);
-
-  for (let result of data) {
+  for (let result of standingArray) {
     const r = result.round;
     for (let res2 of result.ConstructorStandings) {
-      if (!data2[res2.Constructor.name]) {
-        data2[res2.Constructor.name] = { code: res2.Constructor.name, points: [[r, res2.points]] };
+      if (!standingMap[res2.Constructor.name]) {
+        standingMap[res2.Constructor.name] = { code: res2.Constructor.name, points: [[r, res2.points]] };
       } else {
-        data2[res2.Constructor.name].points.push([r, res2.points]);
+        standingMap[res2.Constructor.name].points.push([r, res2.points]);
       }
     }
   }
 
-  let data3 = [];
+  let plotData = [];
 
-  for (let i = 0; i < Object.keys(data2).length; i++) {
-    const team = data2[Object.keys(data2)[i]];
+  for (let i = 0; i < Object.keys(standingMap).length; i++) {
+    const team = standingMap[Object.keys(standingMap)[i]];
     let x = [];
     let y = [];
     for (let j = 0; j < team.points.length; j++) {
       x.push(team.points[j][0]);
       y.push(team.points[j][1]);
     }
-    data3.push({
+    plotData.push({
       x: x,
       y: y,
       type: 'scatter',
@@ -68,7 +64,7 @@ function TeamPointChangeChart() {
   return (
     <div>
       <Plot
-        data={data3}
+        data={plotData}
         layout={{ width: 800, height: 800, hovermode: 'x', legend: { itemclick: 'toggle' } }}
       />
     </div>

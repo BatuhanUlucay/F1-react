@@ -9,6 +9,5 @@ export const useTeamDrivers = (constructorId, season) => {
   return useQuery({
     queryKey: ['teamDrivers', constructorId, season],
     queryFn: () => getTeamDrivers(constructorId, season),
-    // ...config,
   });
 };

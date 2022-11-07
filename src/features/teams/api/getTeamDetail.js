@@ -9,6 +9,5 @@ export const useTeamDetails = (constructorId) => {
   return useQuery({
     queryKey: ['teamDetails', constructorId],
     queryFn: () => getTeamDetails(constructorId),
-    // ...config,
   });
 };

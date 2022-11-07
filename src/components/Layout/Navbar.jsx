@@ -97,7 +97,7 @@ function Navbar() {
               variant="h5"
               noWrap
               component="a"
-              href=""
+              href="/"
               sx={{
                 mt: 2,
                 mr: 2,

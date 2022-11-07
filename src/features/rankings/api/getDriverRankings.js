@@ -9,6 +9,5 @@ export const useDriverRankings = (season) => {
   return useQuery({
     queryKey: ['driverRankings', season],
     queryFn: () => getDriverRankings(season),
-    // ...config,
   });
 };
