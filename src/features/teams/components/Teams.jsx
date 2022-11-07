@@ -36,7 +36,7 @@ function Teams() {
           >{`${year} Formula 1 Constructors`}</Typography>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mx-auto w-4/5 mt-16 justify-items-center">
             {teams.map((team) => (
-              <TeamCard team={team} />
+              <TeamCard team={team} key={team.Constructor.constructorId} />
             ))}
           </div>
         </>

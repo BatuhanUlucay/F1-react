@@ -3,7 +3,6 @@ import Box from '@mui/material/Box';
 import Collapse from '@mui/material/Collapse';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 
 function CollapsibleTable({ rows, open }) {
@@ -13,7 +12,6 @@ function CollapsibleTable({ rows, open }) {
         <Table size='medium'>
           <TableHead></TableHead>
           <TableBody>
-            <TableCell />
             {rows}
           </TableBody>
         </Table>

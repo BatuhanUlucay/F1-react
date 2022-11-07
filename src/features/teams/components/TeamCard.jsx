@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
-import ImageIcon from '@mui/icons-material/Image';
+import ApartmentIcon from '@mui/icons-material/Apartment';
 import { useTeamInfobox } from '../api/getTeamInfobox';
 import { Link } from 'react-router-dom';
 import { getLogoUrlFromInfobox } from '../../../util/getLogoUrlFromInfobox';
@@ -32,7 +32,7 @@ function TeamCard({ team }) {
           <Divider />
           <div className="w-28 h-28 mx-auto mt-8">
             {imgSource === '' ? (
-              <ImageIcon className="w-full h-full m-auto block" />
+              <ApartmentIcon className="w-full h-full m-auto block" />
             ) : (
               <img alt="Team logo" src={imgSource} className="max-w-full max-h-full block m-auto" />
             )}

@@ -28,6 +28,7 @@ function TeamsDropdown() {
                 to={`teams/${team.Constructor.constructorId}`}
                 reloadDocument
                 className="no-underline text-inherit"
+                key={team.Constructor.constructorId}
               >
                 <div
                   className={`h-8 w-56 border-solid border-r border-b border-t-0 border-l-0 rounded-sm mx-8 my-4 text-center`}

@@ -13,7 +13,9 @@ export function parseTeamInfo(infobox) {
 
   // Team base
   let key = findSubstring(keys, 'base');
-  allFields.base = infobox[key].data.text;
+  if (key !== '') {
+    allFields.base = infobox[key].data.text;
+  }
 
   // Team owner
   key = findSubstring(keys, 'owner');

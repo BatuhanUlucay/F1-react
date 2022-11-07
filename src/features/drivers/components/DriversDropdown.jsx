@@ -26,6 +26,7 @@ function DriversDropdown() {
           {drivers.map((driver) => {
             return (
               <Link
+                key={driver.Driver.driverId}
                 to={`drivers/${driver.Driver.driverId}`}
                 reloadDocument
                 className="no-underline text-inherit"

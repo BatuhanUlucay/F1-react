@@ -48,7 +48,12 @@ function ConstructorStandings() {
     const constructorRows = (
       <>
         {result.map((team) => {
-          return <ConstructorRow constructor={team}></ConstructorRow>;
+          return (
+            <ConstructorRow
+              constructor={team}
+              key={team.Constructor.constructorId}
+            ></ConstructorRow>
+          );
         })}
       </>
     );

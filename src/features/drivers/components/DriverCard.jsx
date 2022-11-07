@@ -3,7 +3,7 @@ import { Typography } from '@mui/material';
 import Divider from '@mui/material/Divider';
 import { useDriverPhoto } from '../api/getDriverPhoto';
 import { Link } from 'react-router-dom';
-import ImageIcon from '@mui/icons-material/Image';
+import PersonIcon from '@mui/icons-material/Person';
 
 function DriverCard({ driver }) {
   const [photo, setPhoto] = useState('');
@@ -34,11 +34,11 @@ function DriverCard({ driver }) {
           <Typography className="absolute right-1 my-2">{driver.points} points</Typography>
         </div>
         <Divider />
-        <div className="w-80 h-80 grid grid-cols-2 my-8 mx-auto">
+        <div className="w-80 h-80 grid grid-cols-2 mx-auto">
           {photo === '' ? (
-            <ImageIcon className="w-full h-full m-auto block" />
+            <PersonIcon className="w-full h-full m-auto block" />
           ) : (
-            <img alt="Driver" src={photo} className="max-w-full max-h-full block " />
+            <img alt="Driver" src={photo} className="max-w-full max-h-full block my-8" />
           )}
 
           <div className="ml-6">

@@ -18,7 +18,7 @@ function Drivers() {
         <Typography variant='h5' className='text-center mb-8'>{`${year} Formula 1 Drivers`}</Typography>
         <div className="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-4 mx-auto w-4/5 mt-16 justify-items-center">
           {drivers.map((driver) => (
-            <DriverCard driver={driver} />
+            <DriverCard driver={driver} key={driver.Driver.driverId}/>
           ))}
         </div>
       </>

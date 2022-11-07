@@ -5,6 +5,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { StyledEngineProvider } from '@mui/material/styles';
 import { FilterProvider } from '../context/SeasonContext';
+import Spinner from "../assets/f1-car.gif"
 
 const theme = createTheme({
   palette: {
@@ -23,8 +24,7 @@ function AppProvider({ children }) {
     <React.Suspense
       fallback={
         <div className="flex items-center justify-center w-screen h-screen">
-          {/* TODO: implement a spinner <Spinner size="xl" /> */}
-          Loading
+          <img src={Spinner} alt="Loading"/>
         </div>
       }
     >

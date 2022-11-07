@@ -10,7 +10,7 @@ import { useDriverStats } from '../api/getDriversStats';
 import { calculateDriverChamps, calculateDriverStats } from '../../../util/calculateDriverStats';
 import { useDriverChamps } from '../api/getDriverChamps';
 import { Link } from 'react-router-dom';
-import ImageIcon from '@mui/icons-material/Image';
+import PersonIcon from '@mui/icons-material/Person';
 import { parsePhotoFromWiki } from '../../../util/parsePhotoFromWiki';
 
 function DriverDetail() {
@@ -54,7 +54,7 @@ function DriverDetail() {
       <Card className="lg:w-2/3 mx-auto lg:flex mt-24">
         <div className="md:w-1/3 w-2/3 mx-auto">
           {profilePhoto === '' ? (
-            <ImageIcon className="w-full h-full m-auto block" />
+            <PersonIcon className="w-full h-full m-auto block" />
           ) : (
             <CardMedia component="img" alt="DriverPhoto" image={profilePhoto} />
           )}
@@ -74,7 +74,7 @@ function DriverDetail() {
             </Typography>
             <Typography className="font-bold text-2xl mt-4">Permanent number</Typography>
             <Typography className="font-medium text-md mt-4">
-              {driverDetails.permanentNumber}
+              {!driverDetails.permanentNumber ? '-' : driverDetails.permanentNumber}
             </Typography>
             <Typography className="font-bold text-2xl mt-4">Championships</Typography>
             <Typography className="font-medium text-md mt-4">{champs}</Typography>

@@ -12,7 +12,7 @@ import { useTeamDrivers } from '../api/getTeamDrivers';
 import { useTeamStats } from '../api/getTeamStats';
 import { Link } from 'react-router-dom';
 import { calculateTeamStats } from '../../../util/calculateTeamStats';
-import ImageIcon from '@mui/icons-material/Image';
+import ApartmentIcon from '@mui/icons-material/Apartment';
 
 function TeamDetail() {
   const [imgSource, setImgSource] = useState('');
@@ -34,7 +34,7 @@ function TeamDetail() {
     }
 
     if (infoboxQuery.isSuccess && teamDriversQuery.isSuccess && teamStatsQuery.isSuccess) {
-      const wikiInfobox = infoboxQuery.data.infobox();
+      const wikiInfobox = infoboxQuery.data?.infobox();
       if (imgSource === '') getLogoUrlFromInfobox(wikiInfobox, setImgSource);
 
       const info = parseTeamInfo(wikiInfobox?.data);
@@ -49,7 +49,7 @@ function TeamDetail() {
         <Card className="lg:w-2/3 mx-auto mt-24">
           <div className=" w-1/3 mx-auto my-auto">
             {imgSource === '' ? (
-              <ImageIcon className="w-full h-full m-auto block" />
+              <ApartmentIcon className="w-full h-full m-auto block" />
             ) : (
               <CardMedia component="img" alt="TeamLogo" image={imgSource} />
             )}
@@ -59,23 +59,25 @@ function TeamDetail() {
               <Typography className="font-bold text-2xl mt-4">Name</Typography>
               <Typography className="font-medium text-md mt-4">{teamDetails.name}</Typography>
               {Object.keys(info).map((keyString) => (
-                <>
+                <React.Fragment key={keyString}>
                   <Typography className="font-bold text-2xl mt-4" key={keyString}>
                     {keyString[0].toUpperCase() + keyString.slice(1)}
                   </Typography>
                   <Typography className="font-medium text-md mt-4">{info[keyString]}</Typography>
-                </>
+                </React.Fragment>
               ))}
               <Typography className="font-bold text-2xl mt-4">Championships</Typography>
               <Typography className="font-medium text-md mt-4">{championships}</Typography>
               <Typography className="font-bold text-2xl mt-4">Drivers</Typography>
-              <Typography className="mt-4">
-                {drivers.map((driver) => (
-                  <Link to={`/drivers/${driver.driverId}`} key={driver.driverId}>
-                    <Typography className="font-medium text-md">{`${driver.givenName} ${driver.familyName}`}</Typography>
-                  </Link>
-                ))}
-              </Typography>
+              <div className="mt-4">
+                {drivers.length === 0
+                  ? '-'
+                  : drivers.map((driver) => (
+                      <Link to={`/drivers/${driver.driverId}`} key={driver.driverId}>
+                        <Typography className="font-medium text-md">{`${driver.givenName} ${driver.familyName}`}</Typography>
+                      </Link>
+                    ))}
+              </div>
             </div>
           </CardContent>
         </Card>

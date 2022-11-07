@@ -72,8 +72,8 @@ const RaceRow = ({ race, latest, passed }) => {
 
   sessions.sort();
 
-  const sessionsRows = sessions.map((session) => (
-    <TableRow>
+  const sessionsRows = sessions.map((session, index) => (
+    <TableRow key={index}>
       <TableCell>{session.name}</TableCell>
       <TableCell>
         {convertDate(session.date).toLocaleString('default', {
@@ -124,7 +124,7 @@ const RaceRow = ({ race, latest, passed }) => {
       </TableRow>
       <TableRow>
         <TableCell className="pb-0 pt-0" colSpan={6}>
-          <CollapsibleTable rows={sessionsRows} open={open}></CollapsibleTable>
+          <CollapsibleTable rows={sessionsRows} open={open} />
         </TableCell>
       </TableRow>
     </>
@@ -161,7 +161,14 @@ export const Races = () => {
     let raceRows = (
       <>
         {rows.map((race) => {
-          return <RaceRow race={race} latest={race.latest} passed={race.passed}></RaceRow>;
+          return (
+            <RaceRow
+              race={race}
+              latest={race.latest}
+              passed={race.passed}
+              key={race.raceName}
+            ></RaceRow>
+          );
         })}
       </>
     );
@@ -169,7 +176,7 @@ export const Races = () => {
     return (
       <>
         <SeasonFilter />
-        <Typography variant='h5' className='text-center mb-8'>{`${year} Race Schedule`}</Typography>
+        <Typography variant="h5" className="text-center mb-8">{`${year} Race Schedule`}</Typography>
         <GenericTable rows={raceRows} columns={columns}></GenericTable>;
       </>
     );

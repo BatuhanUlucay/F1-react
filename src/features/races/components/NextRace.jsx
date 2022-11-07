@@ -1,10 +1,10 @@
 import React from 'react';
 import NextRaceCountdown from './NextRaceCountdown';
-
 import { useLastRace } from '../api/getLastRace';
 import { useNextRace } from '../api/getNextRace';
 import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
+import Spinner from "../../../assets/f1-car.gif"
 
 const lookup = require('coordinate_to_country');
 
@@ -67,12 +67,16 @@ function NextRace() {
           <Typography variant="h5" component="div">
             {nextRaceName}
           </Typography>
-          <Typography variant='h7'>
-            {nextRaceCircuit.circuitName}
-          </Typography>
+          <Typography variant="h7">{nextRaceCircuit.circuitName}</Typography>
         </div>
         <NextRaceCountdown nextDate={nextRaceDateFormatted} lastDate={lastRaceDateFormatted} />
       </Card>
+    );
+  } else {
+    return (
+      <div className="flex items-center justify-center w-screen h-screen">
+        <img src={Spinner} alt="Loading" />
+      </div>
     );
   }
 }
