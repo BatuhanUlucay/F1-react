@@ -5,6 +5,7 @@ import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
 import { useTeamRankings } from '../api/getTeamRankings';
 import { Link } from 'react-router-dom';
+import { Typography } from '@mui/material';
 
 const ConstructorRow = ({ constructor }) => {
   return (
@@ -31,9 +32,20 @@ function ConstructorStandings() {
 
   if (teamRankingsQuery.isSuccess) {
     const result =
-      teamRankingsQuery.data.data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings;
+      teamRankingsQuery.data.data.MRData.StandingsTable.StandingsLists[0]?.ConstructorStandings;
 
-    let constructorRows = (
+    if (!result) {
+      return (
+        <>
+          <GenericTable rows={[]} columns={columns} />
+          <Typography className="text-center mt-8">
+            No Constructor Championship found in this year.
+          </Typography>
+        </>
+      );
+    }
+
+    const constructorRows = (
       <>
         {result.map((team) => {
           return <ConstructorRow constructor={team}></ConstructorRow>;

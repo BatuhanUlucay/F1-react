@@ -30,15 +30,15 @@ function DriverCard({ driver }) {
     <Link to={`/drivers/${driver.Driver.driverId}`} className="no-underline text-black">
       <div className="w-96 h-96 border-solid border my-10 rounded-xl shadow-2xl">
         <div className="flex w-full relative">
-          <Typography variant="h4">{driver.position}</Typography>
+          <Typography variant="h4" className='ml-4'>{driver.position}</Typography>
           <Typography className="absolute right-1 my-2">{driver.points} points</Typography>
         </div>
         <Divider />
-        <div className="w-full h-auto grid grid-cols-2 my-8">
+        <div className="w-80 h-80 grid grid-cols-2 my-8 mx-auto">
           {photo === '' ? (
             <ImageIcon className="w-full h-full m-auto block" />
           ) : (
-            <img alt="Driver" src={photo} className="w-full h-full object-fit" />
+            <img alt="Driver" src={photo} className="max-w-full max-h-full block " />
           )}
 
           <div className="ml-6">
