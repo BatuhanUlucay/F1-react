@@ -3,6 +3,7 @@ import { useDriverRankings } from '../../rankings/api/getDriverRankings';
 import DriverCard from './DriverCard';
 import SeasonFilter from '../../../components/Select/SeasonFilter';
 import SeasonContext from '../../../context/SeasonContext';
+import { Typography } from '@mui/material';
 
 function Drivers() {
   const { year } = useContext(SeasonContext);
@@ -14,6 +15,7 @@ function Drivers() {
     return (
       <>
         <SeasonFilter />
+        <Typography variant='h5' className='text-center mb-8'>{`${year} Formula 1 Drivers`}</Typography>
         <div className="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-4 mx-auto w-4/5 mt-16 justify-items-center">
           {drivers.map((driver) => (
             <DriverCard driver={driver} />

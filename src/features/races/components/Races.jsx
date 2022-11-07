@@ -74,7 +74,6 @@ const RaceRow = ({ race, latest, passed }) => {
 
   const sessionsRows = sessions.map((session) => (
     <TableRow>
-      {/* <TableCell></TableCell> */}
       <TableCell>{session.name}</TableCell>
       <TableCell>
         {convertDate(session.date).toLocaleString('default', {
@@ -170,6 +169,7 @@ export const Races = () => {
     return (
       <>
         <SeasonFilter />
+        <Typography variant='h5' className='text-center mb-8'>{`${year} Race Schedule`}</Typography>
         <GenericTable rows={raceRows} columns={columns}></GenericTable>;
       </>
     );
