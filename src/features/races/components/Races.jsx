@@ -70,7 +70,12 @@ const RaceRow = ({ race, latest, passed }) => {
     });
   }
 
-  sessions.sort();
+  sessions.sort((a, b) => {
+    const first = a.date + a.time;
+    const second = b.date + b.time;
+
+    return first.localeCompare(second);
+  });
 
   const sessionsRows = sessions.map((session, index) => (
     <TableRow key={index}>
