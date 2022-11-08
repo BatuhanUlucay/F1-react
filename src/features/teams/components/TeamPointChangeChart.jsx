@@ -61,6 +61,10 @@ function TeamPointChangeChart() {
     });
   }
 
+  plotData.sort((a, b) => {
+    return b.y[b.y.length - 1] - a.y[a.y.length - 1];
+  });
+
   return (
     <div>
       <Plot
