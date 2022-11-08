@@ -38,7 +38,7 @@ function Navbar() {
 
   return (
     <>
-      <AppBar className="h-16 justify-center" position="static">
+      <AppBar className="h-16 justify-center" position="fixed">
         <Box className="flex items-center h-full">
           <Typography
             variant="h5"
