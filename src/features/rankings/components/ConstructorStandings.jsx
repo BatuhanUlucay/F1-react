@@ -15,7 +15,7 @@ const ConstructorRow = ({ constructor }) => {
       <TableCell>
         <Link
           to={`/teams/${constructor.Constructor.constructorId}`}
-          className="no-underline text-inherit"
+          className="text-inherit"
         >
           {constructor.Constructor.name}
         </Link>

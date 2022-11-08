@@ -12,7 +12,7 @@ const DriverRow = ({ driver }) => {
       <TableCell />
       <TableCell>{driver.position}</TableCell>
       <TableCell>
-        <Link to={`/drivers/${driver.Driver.driverId}`} className="no-underline text-inherit">
+        <Link to={`/drivers/${driver.Driver.driverId}`} className="text-inherit">
           {driver.Driver.givenName + ' ' + driver.Driver.familyName}
         </Link>
       </TableCell>

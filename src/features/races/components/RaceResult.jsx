@@ -55,7 +55,7 @@ function RaceResult() {
         <TableCell />
         <TableCell>{row.position}</TableCell>
         <TableCell>
-          <Link to={`/drivers/${row.Driver.driverId}`} className="no-underline text-inherit">
+          <Link to={`/drivers/${row.Driver.driverId}`} className="text-inherit">
             {`${row.Driver.givenName} ${row.Driver.familyName}`}
           </Link>
         </TableCell>
