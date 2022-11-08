@@ -50,8 +50,7 @@ function NextRace() {
     );
 
     return (
-      <Card className="max-w-lg mx-auto mt-16">
-        <div className='mt-24'>
+      <Card className="max-w-lg mx-auto mt-32">
 
         <Typography variant="h2" component="div" sx={{ textAlign: 'center', marginBottom: '1rem' }}>
           Next Race
@@ -72,7 +71,6 @@ function NextRace() {
           <Typography variant="h7">{nextRaceCircuit.circuitName}</Typography>
         </div>
         <NextRaceCountdown nextDate={nextRaceDateFormatted} lastDate={lastRaceDateFormatted} />
-    </div>
       </Card>
     );
   } else {

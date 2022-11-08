@@ -11,6 +11,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { Link } from 'react-router-dom';
 import DriversDropdown from '../../features/drivers/components/DriversDropdown';
 import TeamsDropdown from '../../features/teams/components/TeamsDropdown';
+import GitHubIcon from '@mui/icons-material/GitHub';
 
 const pages = ['Races', 'Standings', 'Drivers', 'Teams'];
 
@@ -153,13 +154,18 @@ function Navbar() {
               ))}
             </Box>
           </Box>
+          <div className="mr-12">
+            <a href="https://github.com/BatuhanUlucay/F1-react" className="text-inherit" target="_blank" rel="noreferrer">
+              <GitHubIcon className="text-4xl" />
+            </a>
+          </div>
         </Box>
       </AppBar>
       {showDropdown && (
         <Box
           onMouseOver={() => handleMouseOver(dropdown)}
           onMouseLeave={handleMouseLeave}
-          className="bg-black invisible lg:visible absolute w-full opacity-90 z-40"
+          className="bg-black invisible lg:visible absolute left-0 top-16 w-full opacity-90 z-40"
         >
           {dropdown === 'Drivers' ? <DriversDropdown /> : <TeamsDropdown />}
         </Box>
