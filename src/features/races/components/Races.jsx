@@ -81,7 +81,7 @@ const RaceRow = ({ race, latest, passed }) => {
     <TableRow key={index}>
       <TableCell>{session.name}</TableCell>
       <TableCell>
-        {convertDate(session.date).toLocaleString('default', {
+        {convertDate(session.date).toLocaleString('en-GB', {
           day: 'numeric',
           month: 'long',
           weekday: 'long',
