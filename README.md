@@ -2,6 +2,8 @@
 
 In this project, I've tried to visualize data about Formula 1. This website includes information about races, race results, standings, drivers and teams.
 
+I would like to thank to Ergast for featuring this project in their Application gallery! You can check [this](https://ergast.com/mrd/gallery/#f1_react) out.
+
 ## Project Details
 
 Project is written with [React](https://reactjs.org/). [TailwindCSS](https://tailwindcss.com/) and [Material UI](https://mui.com/) are used for styling.  [Vercel](https://vercel.com/) is used for deployment.
