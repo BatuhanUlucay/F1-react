@@ -15,6 +15,9 @@ const DriverRow = ({ driver }) => {
         <Link to={`/drivers/${driver.Driver.driverId}`} className="text-inherit">
           {driver.Driver.givenName + ' ' + driver.Driver.familyName}
         </Link>
+        <div className='text-xs'>
+          {driver.Constructors[0].name}
+        </div>
       </TableCell>
       <TableCell>{driver.points}</TableCell>
     </TableRow>

@@ -50,7 +50,9 @@ function NextRace() {
     );
 
     return (
-      <Card className="max-w-lg mx-auto mt-32">
+      <Card className="max-w-lg mx-auto mt-16">
+        <div className='mt-24'>
+
         <Typography variant="h2" component="div" sx={{ textAlign: 'center', marginBottom: '1rem' }}>
           Next Race
         </Typography>
@@ -60,16 +62,17 @@ function NextRace() {
               +nextRaceCircuit.Location.lat,
               +nextRaceCircuit.Location.long,
               true
-            )}`}
-            alt="Flag"
-            height={80}
-          />
+              )}`}
+              alt="Flag"
+              height={80}
+              />
           <Typography variant="h5" component="div">
             {nextRaceName}
           </Typography>
           <Typography variant="h7">{nextRaceCircuit.circuitName}</Typography>
         </div>
         <NextRaceCountdown nextDate={nextRaceDateFormatted} lastDate={lastRaceDateFormatted} />
+    </div>
       </Card>
     );
   } else {

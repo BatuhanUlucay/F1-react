@@ -58,6 +58,7 @@ function RaceResult() {
           <Link to={`/drivers/${row.Driver.driverId}`} className="text-inherit">
             {`${row.Driver.givenName} ${row.Driver.familyName}`}
           </Link>
+          <div className='text-xs'>{row.Constructor.name}</div>
         </TableCell>
         <TableCell>
           {row.status === 'Finished' || row.status.includes('Lap')

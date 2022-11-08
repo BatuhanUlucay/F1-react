@@ -40,22 +40,24 @@ function Navbar() {
     <>
       <AppBar className="h-16 justify-center" position="fixed">
         <Box className="flex items-center h-full">
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              ml: '5%',
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            F1
-          </Typography>
+          <div className="hidden md:block w-32 ml-20">
+            <Link to={'/'} className="text-inherit no-underline">
+              <Typography
+                variant="h5"
+                noWrap
+                sx={{
+                  mr: 2,
+                  ml: '5%',
+                  display: { xs: 'none', md: 'flex' },
+                  fontFamily: 'monospace',
+                  color: 'inherit',
+                  textDecoration: 'none',
+                }}
+              >
+                F1
+              </Typography>
+            </Link>
+          </div>
           <Box sx={{ ml: 8, flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton size="large" onClick={handleOpenNavMenu} color="inherit">
               <MenuIcon />
@@ -92,13 +94,14 @@ function Navbar() {
               ))}
             </Menu>
           </Box>
-          <Box className="w-1/2 mx-auto h-full">
+          <Box className="w-3/4 mx-auto h-full">
             <Typography
               variant="h5"
               noWrap
               component="a"
               href="/"
               sx={{
+                ml: 16,
                 mt: 2,
                 mr: 2,
                 display: { xs: 'flex', md: 'none' },
@@ -112,7 +115,6 @@ function Navbar() {
             <Box
               sx={{
                 width: '20',
-
                 flexGrow: 1,
                 justifyContent: 'center',
                 display: { xs: 'none', md: 'flex' },
