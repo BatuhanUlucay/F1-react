@@ -41,7 +41,7 @@ function DriverCard({ driver }) {
             <img alt="Driver" src={photo} className="max-w-full max-h-full block my-8" />
           )}
 
-          <div className="ml-6">
+          <div className="ml-6 mt-12">
             <Typography variant="h6">{`${driver.Driver.givenName} ${driver.Driver.familyName}`}</Typography>
             <Typography
               variant="h7"
