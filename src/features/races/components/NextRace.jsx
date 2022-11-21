@@ -83,7 +83,7 @@ function NextRace() {
           <Typography variant="h2" component="div" sx={{ textAlign: 'center', marginTop: '8rem' }}>
             It's off season. See you in {new Date().getFullYear() + 1} !
           </Typography>
-          <div className="flex w-1/3 justify-center m-auto">
+          <div className="flex w-1/4 justify-center m-auto">
             <img src={Spinner} alt="Loading" />
           </div>
         </>

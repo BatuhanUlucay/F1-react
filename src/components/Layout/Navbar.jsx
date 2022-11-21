@@ -154,7 +154,7 @@ function Navbar() {
               ))}
             </Box>
           </Box>
-          <div className="mr-12">
+          <div className="hidden md:block mr-12">
             <a href="https://github.com/BatuhanUlucay/F1-react" className="text-inherit" target="_blank" rel="noreferrer">
               <GitHubIcon className="text-4xl" />
             </a>
