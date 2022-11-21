@@ -146,7 +146,7 @@ export const Races = () => {
 
     //User is viewing current seasons page.
     if (year === new Date().getFullYear()) {
-      let latest = 0;
+      let latest = -1;
 
       for (let i = 0; i < rows.length; i++) {
         if (new Date() < new Date(rows[i].date)) {
@@ -155,7 +155,7 @@ export const Races = () => {
         }
         rows[i].passed = true;
       }
-      rows[latest].latest = true;
+      if (latest !== -1) rows[latest].latest = true;
     } else if (year < new Date().getFullYear()) {
       for (let i = 0; i < rows.length; i++) {
         rows[i].passed = true;
