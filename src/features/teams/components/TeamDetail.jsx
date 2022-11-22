@@ -56,19 +56,19 @@ function TeamDetail() {
           </div>
           <CardContent className="mx-auto w-2/3">
             <div className="grid grid-cols-2 mt-16 w-2/3 mx-auto">
-              <Typography className="font-bold text-2xl mt-4">Name</Typography>
+              <Typography className="font-bold md:text-2xl mt-4">Name</Typography>
               <Typography className="font-medium text-md mt-4">{teamDetails.name}</Typography>
               {Object.keys(info).map((keyString) => (
                 <React.Fragment key={keyString}>
-                  <Typography className="font-bold text-2xl mt-4" key={keyString}>
+                  <Typography className="font-bold md:text-2xl mt-4" key={keyString}>
                     {keyString[0].toUpperCase() + keyString.slice(1)}
                   </Typography>
                   <Typography className="font-medium text-md mt-4">{info[keyString]}</Typography>
                 </React.Fragment>
               ))}
-              <Typography className="font-bold text-2xl mt-4">Championships</Typography>
-              <Typography className="font-medium text-md mt-4">{championships}</Typography>
-              <Typography className="font-bold text-2xl mt-4">Drivers</Typography>
+              <Typography className="font-bold md:text-2xl mt-4">Champs</Typography>
+              <Typography className="font-medium md:text-md mt-4">{championships}</Typography>
+              <Typography className="font-bold md:text-2xl mt-4">Drivers</Typography>
               <div className="mt-4">
                 {drivers.length === 0
                   ? '-'

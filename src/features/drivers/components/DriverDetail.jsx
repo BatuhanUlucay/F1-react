@@ -59,38 +59,38 @@ function DriverDetail() {
             <CardMedia component="img" alt="DriverPhoto" image={profilePhoto} />
           )}
         </div>
-        <CardContent className="mx-auto md:w-1/2 w-full">
-          <Typography variant="h2" component="div" className="mb-8 text-center">
+        <CardContent className="mx-auto w-2/3">
+          <Typography variant="h2" component="div" className="mb-8 text-center text-xl font-bold">
             {driverDetails.givenName + ' ' + driverDetails.familyName}
           </Typography>
           <div className="grid grid-cols-2 mt-16">
-            <Typography className="font-bold text-2xl mt-4">Nationality</Typography>
+            <Typography className="font-bold md:text-2xl mt-4">Nationality</Typography>
             <Typography className="font-medium text-md mt-4">
               {driverDetails.nationality}
             </Typography>
-            <Typography className="font-bold text-2xl mt-4">Age</Typography>
+            <Typography className="font-bold md:text-2xl mt-4">Age</Typography>
             <Typography className="font-medium text-md mt-4">
               {new Date().getFullYear() - driverDetails.dateOfBirth.split('-')[0]}
             </Typography>
-            <Typography className="font-bold text-2xl mt-4">Permanent number</Typography>
+            <Typography className="font-bold md:text-2xl mt-4">Permanent number</Typography>
             <Typography className="font-medium text-md mt-4">
               {!driverDetails.permanentNumber ? '-' : driverDetails.permanentNumber}
             </Typography>
-            <Typography className="font-bold text-2xl mt-4">Championships</Typography>
+            <Typography className="font-bold md:text-2xl mt-4">Champs</Typography>
             <Typography className="font-medium text-md mt-4">{champs}</Typography>
           </div>
           {stats && (
             <>
               <div className="grid grid-cols-2">
-                <Typography className="font-bold text-2xl mt-4">Carreer Points</Typography>
-                <Typography className="font-medium text-md mt-4">{stats[0]}</Typography>
-                <Typography className="font-bold text-2xl mt-4">Carreer Wins</Typography>
-                <Typography className="font-medium text-md mt-4">{stats[1]}</Typography>
-                <Typography className="font-bold text-2xl mt-4">Carreer Podiums</Typography>
-                <Typography className="font-medium text-md mt-4">{stats[2]}</Typography>
-                <Typography className="font-bold text-2xl mt-4">First Entry</Typography>
-                <Typography className="font-medium text-md mt-4">{stats[3]}</Typography>
-                <Typography className="font-bold text-2xl mt-4">Latest Team</Typography>
+                <Typography className="font-bold md:text-2xl mt-4">Carreer Points</Typography>
+                <Typography className="font-medium md:text-md mt-4">{stats[0]}</Typography>
+                <Typography className="font-bold md:text-2xl mt-4">Carreer Wins</Typography>
+                <Typography className="font-medium md:text-md mt-4">{stats[1]}</Typography>
+                <Typography className="font-bold md:text-2xl mt-4">Carreer Podiums</Typography>
+                <Typography className="font-medium md:text-md mt-4">{stats[2]}</Typography>
+                <Typography className="font-bold md:text-2xl mt-4">First Entry</Typography>
+                <Typography className="font-medium md:text-md mt-4">{stats[3]}</Typography>
+                <Typography className="font-bold md:text-2xl mt-4">Latest Team</Typography>
                 <Link to={`/teams/${stats[4].constructorId}`}>
                   <Typography className="font-medium text-md mt-4">{stats[4].name}</Typography>
                 </Link>

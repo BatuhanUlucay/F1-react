@@ -46,7 +46,7 @@ function SeasonFilter() {
 
   return (
     <div className='mt-28'>
-      <FormControl className="mt-16 ml-32 w-60">
+      <FormControl className="mt-16 w-48 mb-8 ml-8 md:ml-32 md:w-60">
         <InputLabel id="demo-multiple-name-label">Season</InputLabel>
         <Select
           id="demo-multiple-name"

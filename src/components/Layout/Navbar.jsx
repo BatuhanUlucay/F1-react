@@ -59,7 +59,7 @@ function Navbar() {
               </Typography>
             </Link>
           </div>
-          <Box sx={{ ml: 8, flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+          <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
             <IconButton size="large" onClick={handleOpenNavMenu} color="inherit">
               <MenuIcon />
             </IconButton>
@@ -95,20 +95,16 @@ function Navbar() {
               ))}
             </Menu>
           </Box>
-          <Box className="w-3/4 mx-auto h-full">
+          <Box className="w-full mx-auto h-full flex items-center">
             <Typography
               variant="h5"
-              noWrap
               component="a"
               href="/"
               sx={{
-                ml: 16,
-                mt: 2,
-                mr: 2,
                 display: { xs: 'flex', md: 'none' },
-                flexGrow: 1,
                 color: 'inherit',
                 textDecoration: 'none',
+                mx: "auto"
               }}
             >
               F1

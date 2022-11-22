@@ -22,7 +22,7 @@ function TeamCard({ team }) {
 
     return (
       <Link to={`/teams/${team.Constructor.constructorId}`} className="no-underline text-black">
-        <div className="w-96 h-80 border-solid border my-10 rounded-xl shadow-2xl">
+        <div className="w-80 md:w-96 h-80 border-solid border my-10 rounded-xl shadow-2xl">
           <div className="flex w-full relative">
             <Typography variant="h4" className="ml-4">
               {team.position}

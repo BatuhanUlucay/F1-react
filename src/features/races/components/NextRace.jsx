@@ -80,11 +80,11 @@ function NextRace() {
     } else {
       return (
         <>
-          <Typography variant="h2" component="div" sx={{ textAlign: 'center', marginTop: '8rem' }}>
+          <Typography variant="h4" component="div" sx={{ textAlign: 'center', marginTop: '8rem' }}>
             It's off season. See you in {new Date().getFullYear() + 1} !
           </Typography>
-          <div className="flex w-1/4 justify-center m-auto">
-            <img src={Spinner} alt="Loading" />
+          <div className="flex w-3/4 justify-center m-auto">
+            <img src={Spinner} alt="Loading" className='w-3/4'/>
           </div>
         </>
       );
