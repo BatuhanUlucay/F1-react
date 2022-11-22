@@ -129,10 +129,10 @@ function RaceResult() {
             {row.status === 'Finished' || row.status.includes('Lap')
               ? row.Time?.time
                 ? row.Time.time
-                : 'No Time'
+                : row.status
               : 'DNF'}
           </TableCell>
-          <TableCell>{row.status}</TableCell>
+          <TableCell>{row.status.includes("Lap") ? "Finished" : row.status}</TableCell>
           <TableCell>{row.points}</TableCell>
           <TableCell>
             {row.FastestLap?.rank === '1' ? <TimerIcon className="fill-purple-700 ml-5" /> : ''}
