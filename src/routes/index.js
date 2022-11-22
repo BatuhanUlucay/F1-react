@@ -1,13 +1,15 @@
 import { useRoutes } from 'react-router-dom';
-import Landing from '../components/Layout/Landing';
 import PersistentDrawerLeft from '../components/Layout/Navbar';
-import { Races } from '../features/races/components/Races';
-import Standings from '../features/rankings/components/Standings';
-import Teams from '../features/teams/components/Teams';
-import TeamDetail from '../features/teams/components/TeamDetail';
-import DriverDetail from '../features/drivers/components/DriverDetail';
-import Drivers from '../features/drivers/components/Drivers';
-import RaceResult from '../features/races/components/RaceResult';
+import { lazy } from 'react';
+
+const Landing = lazy(() => import('../components/Layout/Landing'));
+const Races = lazy(() => import('../features/races/components/Races'));
+const Standings = lazy(() => import('../features/rankings/components/Standings'));
+const Teams = lazy(() => import('../features/teams/components/Teams'));
+const TeamDetail = lazy(() => import('../features/teams/components/TeamDetail'));
+const DriverDetail = lazy(() => import('../features/drivers/components/Drivers'));
+const Drivers = lazy(() => import('../features/drivers/components/Drivers'));
+const RaceResult = lazy(() => import('../features/races/components/RaceResult'));
 
 const AppRoutes = () => {
   const commonRoutes = [

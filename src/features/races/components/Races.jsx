@@ -136,7 +136,7 @@ const RaceRow = ({ race, latest, passed }) => {
   );
 };
 
-export const Races = () => {
+const Races = () => {
   const { year } = useContext(SeasonContext);
 
   const racesQuery = useRaces(year);
@@ -187,3 +187,5 @@ export const Races = () => {
     );
   }
 };
+
+export default Races;
