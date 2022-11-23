@@ -7,7 +7,7 @@ const Races = lazy(() => import('../features/races/components/Races'));
 const Standings = lazy(() => import('../features/rankings/components/Standings'));
 const Teams = lazy(() => import('../features/teams/components/Teams'));
 const TeamDetail = lazy(() => import('../features/teams/components/TeamDetail'));
-const DriverDetail = lazy(() => import('../features/drivers/components/Drivers'));
+const DriverDetail = lazy(() => import('../features/drivers/components/DriverDetail'));
 const Drivers = lazy(() => import('../features/drivers/components/Drivers'));
 const RaceResult = lazy(() => import('../features/races/components/RaceResult'));
 
